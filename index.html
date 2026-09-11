@@ -430,19 +430,6 @@
   }
 
 
-  /* The Prisoners wordmark — metal-inspired display treatment */
-  .band-logo-font{
-    font-family:'Metal Mania', 'Oswald', sans-serif !important;
-    text-transform:uppercase;
-    letter-spacing:.035em;
-    font-weight:400 !important;
-    text-shadow:
-      0 2px 0 rgba(0,0,0,.85),
-      0 5px 18px rgba(0,0,0,.55);
-  }
-  .hero-title .band-logo-font{
-    line-height:.92;
-  }
 
 
   /* social icons */
@@ -597,6 +584,114 @@
     .event-mascot-popup{transition:none;}
   }
 
+
+  /* Press / media credibility */
+  .press-media-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:12px;
+    margin-top:22px;
+  }
+  .press-media-card{
+    display:block;
+    padding:16px 17px;
+    background:#191b1f;
+    border:1px solid #34363c;
+    color:inherit;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .press-media-card:hover{
+    border-color:var(--rust);
+    transform:translateY(-1px);
+  }
+  .press-media-card .media-name{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    color:var(--bone);
+    font-size:16px;
+    letter-spacing:.025em;
+  }
+  .press-media-card .media-desc{
+    margin-top:5px;
+    color:var(--steel);
+    font-size:12px;
+    line-height:1.45;
+  }
+  .press-quote{
+    margin:24px 0 0;
+    padding:20px 22px;
+    border-left:4px solid var(--rust);
+    background:#17191d;
+  }
+  .press-quote blockquote{
+    margin:0;
+    font-family:'Oswald',sans-serif;
+    font-size:22px;
+    line-height:1.35;
+    color:var(--bone);
+  }
+  .press-quote cite{
+    display:block;
+    margin-top:11px;
+    color:var(--steel);
+    font-style:normal;
+    font-size:12px;
+  }
+  .press-quote a{
+    display:inline-block;
+    margin-top:9px;
+    font-size:12px;
+  }
+  .timeline-coverage{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:6px 10px;
+    margin-top:9px;
+    font-size:12px;
+    color:var(--steel);
+  }
+  .timeline-coverage strong{
+    color:var(--steel);
+    font-weight:500;
+  }
+  .timeline-coverage a{
+    color:var(--rust);
+  }
+  .timeline-coverage a:hover{color:#d4693e;}
+
+  @media(max-width:760px){
+    .press-media-grid{grid-template-columns:1fr;}
+  }
+
+
+  /* Official The Prisoners logo */
+  .official-logo{
+    display:block;
+    height:auto;
+    object-fit:contain;
+  }
+  .header-logo-link{
+    display:block;
+    flex:0 0 auto;
+  }
+  .header-logo{
+    width:205px;
+    max-height:46px;
+  }
+  .hero-official-logo{
+    width:min(610px, 72vw);
+    max-width:100%;
+    filter:drop-shadow(0 4px 16px rgba(0,0,0,.85));
+  }
+  .hero-title{
+    max-width:650px;
+  }
+  @media(max-width:760px){
+    .header-logo{width:165px; max-height:40px;}
+    .hero-official-logo{width:min(560px, 92vw);}
+  }
+
 </style>
 
 <script type="application/ld+json">
@@ -703,7 +798,7 @@
 
 <header>
   <div class="wrap">
-    <div class="wordmark band-logo-font">The Prisoners</div>
+    <a class="header-logo-link" href="#" aria-label="The Prisoners home"><img class="official-logo header-logo" src="the-prisoners-logo.png" alt="The Prisoners — est. 2006"></a>
 
     <div style="display:flex; align-items:center;">
       <nav>
@@ -727,7 +822,7 @@
   <div class="hero-media">
     <img src="prisoners-live.jpg" alt="The Prisoners live at Eightball in Thessaloniki with the audience">
     <div class="hero-title">
-      <h1 class="band-logo-font">The <span>Prisoners</span></h1>
+      <img class="official-logo hero-official-logo" src="the-prisoners-logo.png" alt="The Prisoners — est. 2006">
       <div class="mini-tag">Iron Maiden Tribute Band • Thessaloniki • Est. 2006</div>
     </div>
   </div>
@@ -851,7 +946,14 @@
       <div class="tl-item">
         <div class="tl-year">3 Οκτωβρίου 2026</div>
         <p><strong>20 Years of The Prisoners / 40 Years of Somewhere in Time.</strong> Η μπάντα γιορτάζει δύο επετείους σε μία βραδιά στο Eightball Live Stage: 20 χρόνια The Prisoners και 40 χρόνια από το «Somewhere in Time».</p>
-        <a class="tl-source" href="https://rockoverdose.gr/the-prisoners-epeteiako-live-sto-eightball/" target="_blank" rel="noopener">Πηγή: Rock Overdose</a>
+        <div class="timeline-coverage">
+          <strong>Κάλυψη:</strong>
+          <a href="https://rockoverdose.gr/the-prisoners-epeteiako-live-sto-eightball/" target="_blank" rel="noopener">Rock Overdose</a>
+          <span>·</span>
+          <a href="https://www.rocking.gr/agenda/2026/10/3/27515" target="_blank" rel="noopener">Rocking.gr</a>
+          <span>·</span>
+          <a href="https://www.thessalonikiguide.gr/event/the-prisoners-a-killer-tribute-to-iron-maiden/" target="_blank" rel="noopener">ThessalonikiGuide</a>
+        </div>
       </div>
 
     </div>
@@ -912,16 +1014,50 @@
 <section id="press">
   <div class="wrap">
     <h2>Press / Media</h2>
+
     <div class="press-box">
-      <p style="margin:0; color:var(--bone);">Για δημοσιεύματα, συνεντεύξεις ή υλικό υψηλής ανάλυσης, επικοινωνήστε μαζί μας μέσω Facebook.</p>
-      <ul>
-        <li>Διαθέσιμο φωτογραφικό υλικό από πρόσφατα live</li>
-        <li>Δυνατότητα συνέντευξης κατόπιν συνεννόησης</li>
-        <li>Επίσημο ιστορικό εμφανίσεων: <a href="https://www.setlist.fm/setlists/the-prisoners-3852d6f.html" target="_blank" rel="noopener">Setlist.fm</a></li>
-      </ul>
+      <p style="margin:0; color:var(--bone);">
+        Ανεξάρτητες δημοσιεύσεις και καταχωρίσεις για τους The Prisoners και το επετειακό live του 2026.
+      </p>
+
+      <div class="press-media-grid">
+        <a class="press-media-card"
+           href="https://rockoverdose.gr/the-prisoners-epeteiako-live-sto-eightball/"
+           target="_blank" rel="noopener">
+          <div class="media-name">Rock Overdose</div>
+          <div class="media-desc">20 Years Anniversary Show · Eightball 2026</div>
+        </a>
+
+        <a class="press-media-card"
+           href="https://www.rocking.gr/agenda/2026/10/3/27515"
+           target="_blank" rel="noopener">
+          <div class="media-name">Rocking.gr</div>
+          <div class="media-desc">Live Agenda · 3 October 2026 · Thessaloniki</div>
+        </a>
+
+        <a class="press-media-card"
+           href="https://www.thessalonikiguide.gr/event/the-prisoners-a-killer-tribute-to-iron-maiden/"
+           target="_blank" rel="noopener">
+          <div class="media-name">ThessalonikiGuide.gr</div>
+          <div class="media-desc">Event coverage · Somewhere In Time 40 Years</div>
+        </a>
+      </div>
+
+      <div class="press-quote">
+        <blockquote>“Played every Maiden tune to perfection…”</blockquote>
+        <cite>Phivos Papadopoulos · Pitch Black Records · Metal Underground, 2011</cite>
+        <a href="https://www.metalunderground.com/news/details.cfm?newsid=70156"
+           target="_blank" rel="noopener">Read original article →</a>
+      </div>
+
       <div class="press-source">
-        Πρόσφατη κάλυψη:
-        <a href="https://rockoverdose.gr/the-prisoners-epeteiako-live-sto-eightball/" target="_blank" rel="noopener">Rock Overdose — επετειακό live 2026</a>
+        Για δημοσιεύματα, συνεντεύξεις ή υλικό υψηλής ανάλυσης,
+        επικοινωνήστε μέσω της επίσημης σελίδας στο
+        <a href="https://www.facebook.com/UpThePrisoners.skg"
+           target="_blank" rel="noopener">Facebook</a>.
+        · Επίσημο ιστορικό εμφανίσεων:
+        <a href="https://www.setlist.fm/setlists/the-prisoners-3852d6f.html"
+           target="_blank" rel="noopener">Setlist.fm</a>
       </div>
     </div>
   </div>
