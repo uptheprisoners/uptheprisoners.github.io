@@ -473,86 +473,6 @@
     fill:currentColor;
   }
 
-  /* live dropdown in top navigation */
-  .nav-dropdown{
-    position:relative;
-    display:flex;
-    align-items:center;
-  }
-  .nav-dropdown > a{
-    margin-left:22px;
-  }
-  .nav-dropdown-menu{
-    position:absolute;
-    top:100%;
-    left:14px;
-    min-width:170px;
-    padding:8px 0;
-    background:#1d1f23;
-    border:1px solid #34363c;
-    box-shadow:0 14px 30px rgba(0,0,0,.35);
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(6px);
-    transition:.15s ease;
-    z-index:30;
-  }
-  .nav-dropdown:hover .nav-dropdown-menu,
-  .nav-dropdown:focus-within .nav-dropdown-menu{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
-  }
-  .nav-dropdown-menu a{
-    display:block;
-    margin:0;
-    padding:9px 14px;
-    white-space:nowrap;
-  }
-  .nav-dropdown-menu a:hover{
-    background:#26282d;
-  }
-
-  /* live events archive */
-  .live-section-title{
-    font-family:'Oswald',sans-serif;
-    text-transform:uppercase;
-    font-size:17px;
-    color:var(--rust);
-    letter-spacing:.04em;
-    margin:0 0 16px;
-  }
-  #previous{
-    margin-top:36px;
-    padding-top:28px;
-    border-top:1px solid var(--line);
-  }
-  .previous-grid{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:12px;
-  }
-  .previous-card{
-    background:var(--panel);
-    border:1px solid #34363c;
-    padding:15px 17px;
-  }
-  .previous-card .prev-date{
-    font-family:'Oswald',sans-serif;
-    color:var(--rust);
-    font-size:14px;
-    text-transform:uppercase;
-  }
-  .previous-card .prev-title{
-    color:var(--bone);
-    margin-top:3px;
-    font-weight:600;
-  }
-  .previous-card .prev-place{
-    color:var(--steel);
-    font-size:13px;
-    margin-top:3px;
-  }
 
   .footer-social{
     display:flex;
@@ -582,8 +502,6 @@
     header .wrap{align-items:flex-start;}
     nav{align-items:center;}
     .social-icons{margin-left:10px;}
-    .nav-dropdown-menu{left:auto; right:0;}
-    .previous-grid{grid-template-columns:1fr;}
   }
 
 </style>
@@ -696,13 +614,7 @@
 
     <div style="display:flex; align-items:center;">
       <nav>
-        <div class="nav-dropdown">
-          <a href="#live">Live</a>
-          <div class="nav-dropdown-menu">
-            <a href="#upcoming">Upcoming</a>
-            <a href="#previous">Previous</a>
-          </div>
-        </div>
+        <a href="#live">Live</a>
         <a href="#about">Ιστορικό</a>
         <a href="#members">Μέλη</a>
         <a href="#press">Press</a>
@@ -736,10 +648,8 @@
 
 <section id="live">
   <div class="wrap">
-    <h2>Live Events</h2>
-    <div id="upcoming">
-      <div class="live-section-title">Upcoming</div>
-      <div class="live-layout">
+    <h2>Επόμενη Εμφάνιση</h2>
+    <div class="live-layout">
       <div>
         <img class="event-poster" src="event-poster.jpg" alt="The Prisoners — 20 Years Anniversary / 40 Years Somewhere in Time — 3 Οκτωβρίου 2026, Eightball Live Stage, Θεσσαλονίκη">
       </div>
@@ -768,43 +678,6 @@
       </div>
       </div>
     </div>
-
-    <div id="previous">
-      <div class="live-section-title">Previous</div>
-      <div class="previous-grid">
-        <div class="previous-card">
-          <div class="prev-date">14 Νοεμβρίου 2025</div>
-          <div class="prev-title">50 Years of Iron Maiden Anniversary</div>
-          <div class="prev-place">Eightball Live Stage, Θεσσαλονίκη</div>
-        </div>
-        <div class="previous-card">
-          <div class="prev-date">19 Οκτωβρίου 2024</div>
-          <div class="prev-title">40 Years of Powerslave Anniversary</div>
-          <div class="prev-place">Eightball Live Stage, Θεσσαλονίκη</div>
-        </div>
-        <div class="previous-card">
-          <div class="prev-date">3 Φεβρουαρίου 2023</div>
-          <div class="prev-title">Return to the Stage</div>
-          <div class="prev-place">Eightball Live Stage, Θεσσαλονίκη</div>
-        </div>
-        <div class="previous-card">
-          <div class="prev-date">20 Δεκεμβρίου 2019</div>
-          <div class="prev-title">Iron Maiden | A Killer Tribute</div>
-          <div class="prev-place">Eightball Live Stage, Θεσσαλονίκη</div>
-        </div>
-        <div class="previous-card">
-          <div class="prev-date">25 Μαΐου 2019</div>
-          <div class="prev-title">The Puppets 10 Years Anniversary — Special Guests</div>
-          <div class="prev-place">Eightball Live Stage, Θεσσαλονίκη</div>
-        </div>
-        <div class="previous-card">
-          <div class="prev-date">3 Δεκεμβρίου 2010</div>
-          <div class="prev-title">Live at Harley Bar</div>
-          <div class="prev-place">Θεσσαλονίκη</div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
