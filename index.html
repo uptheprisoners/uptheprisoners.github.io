@@ -270,25 +270,33 @@
     position:absolute;
     z-index:2;
     left:max(24px, calc((100vw - 900px)/2 + 24px));
-    top:34px;
-    max-width:520px;
-    padding:18px 22px 16px;
-    background:rgba(12,13,17,.72);
-    border-left:4px solid var(--rust);
-    backdrop-filter:blur(3px);
-    box-shadow:0 14px 34px rgba(0,0,0,.32);
+    top:28px;
+    max-width:560px;
+    padding:0;
+    background:transparent;
+    border:0;
+    backdrop-filter:none;
+    box-shadow:none;
+    pointer-events:none;
   }
   .hero-title h1{
     margin:0;
     font-size:clamp(44px,7vw,82px);
     line-height:.92;
-    text-shadow:0 5px 25px rgba(0,0,0,.9);
+    text-shadow:
+      0 3px 0 rgba(0,0,0,.95),
+      0 6px 18px rgba(0,0,0,.95),
+      0 0 3px rgba(0,0,0,1);
+    -webkit-text-stroke:.5px rgba(0,0,0,.85);
   }
   .hero-title .mini-tag{
     margin-top:10px;
-    color:#e6e1d7;
+    color:#f0ebe1;
     font-size:15px;
     letter-spacing:.02em;
+    text-shadow:
+      0 2px 4px rgba(0,0,0,1),
+      0 0 10px rgba(0,0,0,.95);
   }
   .hero-info{
     background:
@@ -327,6 +335,7 @@
       border-top:1px solid var(--line);
       box-shadow:none;
       backdrop-filter:none;
+      pointer-events:auto;
     }
     .hero-title h1{font-size:54px;}
     .hero-title .mini-tag{font-size:14px;}
