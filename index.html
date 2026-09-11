@@ -990,6 +990,10 @@
   const forceShow = new URLSearchParams(window.location.search).get('promo') === '1';
   const alreadySeen = sessionStorage.getItem('prisonersEventPromoSeen') === '1';
 
+  // Stop showing the promo automatically from 4 October 2026, 00:00 Greece time.
+  const promoEnd = new Date('2026-10-04T00:00:00+03:00').getTime();
+  const promoExpired = Date.now() >= promoEnd;
+
   function hidePopup(){
     popup.classList.add('is-leaving');
     sessionStorage.setItem('prisonersEventPromoSeen','1');
@@ -999,7 +1003,7 @@
     }, 360);
   }
 
-  if (forceShow || !alreadySeen){
+  if (!promoExpired && (forceShow || !alreadySeen)){
     setTimeout(() => {
       popup.classList.add('is-visible');
       popup.setAttribute('aria-hidden','false');
@@ -1010,6 +1014,7 @@
     }, 9000);
   } else {
     popup.setAttribute('aria-hidden','true');
+    popup.style.display = 'none';
   }
 
   closeBtn.addEventListener('click', hidePopup);
