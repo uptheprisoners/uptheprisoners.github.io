@@ -12,7 +12,7 @@
 <meta property="og:locale" content="el_GR">
 <meta name="theme-color" content="#17181c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Metal+Mania&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#17181c;
@@ -420,6 +420,163 @@
     margin:0;
   }
 
+
+  /* The Prisoners wordmark — metal-inspired display treatment */
+  .band-logo-font{
+    font-family:'Metal Mania', 'Oswald', sans-serif !important;
+    text-transform:uppercase;
+    letter-spacing:.035em;
+    font-weight:400 !important;
+    text-shadow:
+      0 2px 0 rgba(0,0,0,.85),
+      0 5px 18px rgba(0,0,0,.55);
+  }
+  .hero-title .band-logo-font{
+    line-height:.92;
+  }
+
+
+  /* social icons */
+  .social-icons{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-left:18px;
+  }
+  .social-icons a{
+    width:30px;
+    height:30px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid #3a3d44;
+    color:var(--bone-dim);
+    transition:border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .social-icons a:hover{
+    color:var(--rust);
+    border-color:var(--rust);
+    background:#202226;
+  }
+  .social-icons svg{
+    width:15px;
+    height:15px;
+    fill:currentColor;
+  }
+
+  /* live dropdown in top navigation */
+  .nav-dropdown{
+    position:relative;
+    display:flex;
+    align-items:center;
+  }
+  .nav-dropdown > a{
+    margin-left:22px;
+  }
+  .nav-dropdown-menu{
+    position:absolute;
+    top:100%;
+    left:14px;
+    min-width:170px;
+    padding:8px 0;
+    background:#1d1f23;
+    border:1px solid #34363c;
+    box-shadow:0 14px 30px rgba(0,0,0,.35);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(6px);
+    transition:.15s ease;
+    z-index:30;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown:focus-within .nav-dropdown-menu{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  .nav-dropdown-menu a{
+    display:block;
+    margin:0;
+    padding:9px 14px;
+    white-space:nowrap;
+  }
+  .nav-dropdown-menu a:hover{
+    background:#26282d;
+  }
+
+  /* live events archive */
+  .live-section-title{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    font-size:17px;
+    color:var(--rust);
+    letter-spacing:.04em;
+    margin:0 0 16px;
+  }
+  #previous{
+    margin-top:36px;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+  }
+  .previous-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+  }
+  .previous-card{
+    background:var(--panel);
+    border:1px solid #34363c;
+    padding:15px 17px;
+  }
+  .previous-card .prev-date{
+    font-family:'Oswald',sans-serif;
+    color:var(--rust);
+    font-size:14px;
+    text-transform:uppercase;
+  }
+  .previous-card .prev-title{
+    color:var(--bone);
+    margin-top:3px;
+    font-weight:600;
+  }
+  .previous-card .prev-place{
+    color:var(--steel);
+    font-size:13px;
+    margin-top:3px;
+  }
+
+  .footer-social{
+    display:flex;
+    gap:10px;
+    margin-top:18px;
+  }
+  .footer-social a{
+    width:34px;
+    height:34px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid #3a3d44;
+    color:var(--bone-dim);
+  }
+  .footer-social a:hover{
+    border-color:var(--rust);
+    color:var(--rust);
+  }
+  .footer-social svg{
+    width:16px;
+    height:16px;
+    fill:currentColor;
+  }
+
+  @media(max-width:760px){
+    header .wrap{align-items:flex-start;}
+    nav{align-items:center;}
+    .social-icons{margin-left:10px;}
+    .nav-dropdown-menu{left:auto; right:0;}
+    .previous-grid{grid-template-columns:1fr;}
+  }
+
 </style>
 
 <script type="application/ld+json">
@@ -526,14 +683,29 @@
 
 <header>
   <div class="wrap">
-    <div class="wordmark">The Prisoners</div>
-    <nav>
-      <a href="#live">Επόμενο Live</a>
-      <a href="#about">Ιστορικό</a>
-      <a href="#members">Μέλη</a>
-      <a href="#press">Press</a>
-      <a href="#links">Links</a>
-    </nav>
+    <div class="wordmark band-logo-font">The Prisoners</div>
+
+    <div style="display:flex; align-items:center;">
+      <nav>
+        <div class="nav-dropdown">
+          <a href="#live">Live</a>
+          <div class="nav-dropdown-menu">
+            <a href="#upcoming">Upcoming</a>
+            <a href="#previous">Previous</a>
+          </div>
+        </div>
+        <a href="#about">Ιστορικό</a>
+        <a href="#members">Μέλη</a>
+        <a href="#press">Press</a>
+        <a href="#links">Links</a>
+      </nav>
+
+      <div class="social-icons" aria-label="Social media">
+        <a href="https://www.facebook.com/UpThePrisoners.skg" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-9h3l.5-3h-3.5V8.1c0-.9.3-1.6 1.7-1.6H17V3.8c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h3v9h3.5z"/></svg></a>
+        <a href="https://www.instagram.com/uptheprisoners.skg/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm11 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg></a>
+        <a href="https://www.youtube.com/@the_prisoners" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -541,7 +713,7 @@
   <div class="hero-media">
     <img src="prisoners-live.jpg" alt="The Prisoners live at Eightball in Thessaloniki with the audience">
     <div class="hero-title">
-      <h1>The <span>Prisoners</span></h1>
+      <h1 class="band-logo-font">The <span>Prisoners</span></h1>
       <div class="mini-tag">Iron Maiden Tribute Band • Thessaloniki • Est. 2006</div>
     </div>
   </div>
@@ -555,8 +727,10 @@
 
 <section id="live">
   <div class="wrap">
-    <h2>Επόμενο live</h2>
-    <div class="live-layout">
+    <h2>Live Events</h2>
+    <div id="upcoming">
+      <div class="live-section-title">Upcoming</div>
+      <div class="live-layout">
       <div>
         <img class="event-poster" src="event-poster.jpg" alt="The Prisoners — 20 Years Anniversary / 40 Years Somewhere in Time — 3 Οκτωβρίου 2026, Eightball Live Stage, Θεσσαλονίκη">
       </div>
@@ -583,7 +757,45 @@
           <a class="btn ghost" href="https://www.setlist.fm/setlists/the-prisoners-3852d6f.html" target="_blank" rel="noopener">Setlist.fm</a>
         </div>
       </div>
+      </div>
     </div>
+
+    <div id="previous">
+      <div class="live-section-title">Previous</div>
+      <div class="previous-grid">
+        <div class="previous-card">
+          <div class="prev-date">14 Νοεμβρίου 2025</div>
+          <div class="prev-title">50 Years of Iron Maiden Anniversary</div>
+          <div class="prev-place">Eightball Live Stage, Θεσσαλονίκη</div>
+        </div>
+        <div class="previous-card">
+          <div class="prev-date">19 Οκτωβρίου 2024</div>
+          <div class="prev-title">40 Years of Powerslave Anniversary</div>
+          <div class="prev-place">Eightball Live Stage, Θεσσαλονίκη</div>
+        </div>
+        <div class="previous-card">
+          <div class="prev-date">3 Φεβρουαρίου 2023</div>
+          <div class="prev-title">Return to the Stage</div>
+          <div class="prev-place">Eightball Live Stage, Θεσσαλονίκη</div>
+        </div>
+        <div class="previous-card">
+          <div class="prev-date">20 Δεκεμβρίου 2019</div>
+          <div class="prev-title">Iron Maiden | A Killer Tribute</div>
+          <div class="prev-place">Eightball Live Stage, Θεσσαλονίκη</div>
+        </div>
+        <div class="previous-card">
+          <div class="prev-date">25 Μαΐου 2019</div>
+          <div class="prev-title">The Puppets 10 Years Anniversary — Special Guests</div>
+          <div class="prev-place">Eightball Live Stage, Θεσσαλονίκη</div>
+        </div>
+        <div class="previous-card">
+          <div class="prev-date">3 Δεκεμβρίου 2010</div>
+          <div class="prev-title">Live at Harley Bar</div>
+          <div class="prev-place">Θεσσαλονίκη</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -775,6 +987,11 @@
 <footer>
   <div class="wrap">
     The Prisoners — Iron Maiden Tribute Band, Θεσσαλονίκη, από το 2006.<br><span style="font-size:12px;">Independent tribute act.</span>
+    <div class="footer-social" aria-label="Social media">
+      <a href="https://www.facebook.com/UpThePrisoners.skg" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-9h3l.5-3h-3.5V8.1c0-.9.3-1.6 1.7-1.6H17V3.8c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h3v9h3.5z"/></svg></a>
+      <a href="https://www.instagram.com/uptheprisoners.skg/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm11 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg></a>
+      <a href="https://www.youtube.com/@the_prisoners" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+    </div>
   </div>
 </footer>
 
