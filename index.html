@@ -1326,84 +1326,6 @@
       padding:7px 9px;
     }
   }
-
-
-  /* minimal one-time entry screen */
-  .entry-screen{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    display:grid;
-    place-items:center;
-    padding:24px;
-    background:
-      radial-gradient(circle at 50% 42%, rgba(184,80,47,.08), transparent 38%),
-      #0d0e11;
-    opacity:1;
-    visibility:visible;
-    transition:opacity .48s ease, visibility .48s ease;
-  }
-
-  .entry-screen.is-leaving{
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-  }
-
-  .entry-screen[hidden],
-  html.entry-seen .entry-screen{
-    display:none !important;
-  }
-
-  .entry-screen-inner{
-    width:min(620px,92vw);
-    text-align:center;
-  }
-
-  .entry-screen-logo{
-    display:block;
-    width:min(520px,86vw);
-    height:auto;
-    margin:0 auto 34px;
-    filter:drop-shadow(0 12px 26px rgba(0,0,0,.58));
-  }
-
-  .entry-button{
-    appearance:none;
-    min-width:142px;
-    padding:12px 24px 13px;
-    border:1px solid rgba(184,80,47,.72);
-    background:rgba(23,24,28,.62);
-    color:var(--bone);
-    font-family:'Oswald',sans-serif;
-    font-size:15px;
-    font-weight:600;
-    letter-spacing:.22em;
-    text-indent:.22em;
-    text-transform:uppercase;
-    cursor:pointer;
-    transition:background .18s ease,border-color .18s ease,transform .18s ease;
-  }
-
-  .entry-button:hover,
-  .entry-button:focus-visible{
-    border-color:#d4693e;
-    background:rgba(184,80,47,.16);
-    outline:none;
-    transform:translateY(-1px);
-  }
-
-  body.entry-open{
-    overflow:hidden;
-  }
-
-  @media(prefers-reduced-motion:reduce){
-    .entry-screen,
-    .entry-button{
-      transition:none;
-    }
-  }
-
 </style>
 
 <script type="application/ld+json">
@@ -1525,130 +1447,49 @@
 </script>
 
 <link rel="preload" href="PrisonerIntro.mp3" as="audio" type="audio/mpeg">
-<link rel="preload" href="the-prisoners-logo.png" as="image">
-<script>
-try{
-  if(sessionStorage.getItem('prisonersEntrySeen') === '1'){
-    document.documentElement.classList.add('entry-seen');
-  }
-}catch(e){}
-</script>
 </head>
 <body>
-
-<div class="entry-screen" id="prisonersEntryScreen" role="dialog" aria-modal="true" aria-label="Είσοδος στην επίσημη σελίδα των The Prisoners">
-  <div class="entry-screen-inner">
-    <img class="entry-screen-logo" src="the-prisoners-logo.png" alt="The Prisoners">
-    <button class="entry-button" id="prisonersEntryButton" type="button">Enter</button>
-  </div>
-</div>
-
-
 <audio id="prisonerIntroAudio" preload="auto" playsinline>
   <source src="PrisonerIntro.mp3" type="audio/mpeg">
 </audio>
 <button class="intro-audio-btn" id="introAudioButton" type="button"
-        aria-label="Αναπαραγωγή εισαγωγικού ήχου" aria-pressed="false" hidden>
+        aria-label="Αναπαραγωγή εισαγωγικού ήχου" aria-pressed="false">
   <svg viewBox="0 0 24 24" aria-hidden="true">
     <path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.2-3.9v7.8a4.5 4.5 0 0 0 2.2-3.9zm0-8.2v2.1a7 7 0 0 1 0 12.2v2.1a9 9 0 0 0 0-16.4z"/>
   </svg>
   <span>Intro</span>
 </button>
 
-
 <script>
 (function(){
-  const entry = document.getElementById('prisonersEntryScreen');
-  const enterButton = document.getElementById('prisonersEntryButton');
   const audio = document.getElementById('prisonerIntroAudio');
-  const audioButton = document.getElementById('introAudioButton');
-  if (!entry || !enterButton || !audio || !audioButton) return;
-
-  const entryKey = 'prisonersEntrySeen';
-  const introKey = 'prisonersIntroPlayed';
-
-  function getSession(key){
-    try{return sessionStorage.getItem(key);}catch(e){return null;}
-  }
-
-  function setSession(key,value){
-    try{sessionStorage.setItem(key,value);}catch(e){}
-  }
-
-  function setPlayingState(playing){
-    audioButton.classList.toggle('is-playing', playing);
-    audioButton.setAttribute('aria-pressed', playing ? 'true' : 'false');
-  }
+  const button = document.getElementById('introAudioButton');
+  if (!audio || !button) return;
 
   audio.volume = 0.72;
+
+  function setPlayingState(playing){
+    button.classList.toggle('is-playing', playing);
+    button.setAttribute('aria-pressed', playing ? 'true' : 'false');
+  }
 
   audio.addEventListener('play', () => setPlayingState(true));
   audio.addEventListener('pause', () => setPlayingState(false));
   audio.addEventListener('ended', () => setPlayingState(false));
 
-  audioButton.addEventListener('click', () => {
-    audioButton.hidden = false;
-
+  button.addEventListener('click', () => {
     if (!audio.paused && !audio.ended){
       audio.pause();
       return;
     }
 
     audio.currentTime = 0;
-    const p = audio.play();
-    if (p && typeof p.catch === 'function'){
-      p.catch(() => setPlayingState(false));
-    }
-  });
-
-  function finishEntry(audioStarted){
-    setSession(entryKey,'1');
-    document.documentElement.classList.add('entry-seen');
-    document.body.classList.remove('entry-open');
-
-    entry.classList.add('is-leaving');
-    setTimeout(() => {
-      entry.hidden = true;
-    }, 500);
-
-    audioButton.hidden = false;
-
-    window.dispatchEvent(new CustomEvent('prisonersEntryComplete', {
-      detail:{audioStarted:audioStarted}
-    }));
-  }
-
-  const entryAlreadySeen = getSession(entryKey) === '1';
-
-  if (entryAlreadySeen){
-    entry.hidden = true;
-    document.body.classList.remove('entry-open');
-    audioButton.hidden = false;
-    return;
-  }
-
-  document.body.classList.add('entry-open');
-
-  enterButton.addEventListener('click', () => {
-    /*
-      Important: audio.play() is called directly inside the click handler,
-      so browsers treat it as a user-initiated sound and do not delay it.
-    */
-    audio.currentTime = 0;
     const result = audio.play();
 
-    if (result && typeof result.then === 'function'){
-      result.then(() => {
-        setSession(introKey,'1');
-        finishEntry(true);
-      }).catch(() => {
-        finishEntry(false);
-      });
-    }else{
-      setSession(introKey,'1');
-      finishEntry(true);
+    if (result && typeof result.catch === 'function'){
+      result.catch(() => setPlayingState(false));
     }
-  }, {once:true});
+  });
 })();
 </script>
 
@@ -2129,33 +1970,15 @@ try{
     }, 360);
   }
 
-  function schedulePromo(delay){
+  if (!promoExpired && (forceShow || !alreadySeen)){
     setTimeout(() => {
       popup.classList.add('is-visible');
       popup.setAttribute('aria-hidden','false');
+    }, 850);
 
-      setTimeout(() => {
-        if (popup.classList.contains('is-visible')) hidePopup();
-      }, 9000);
-    }, delay);
-  }
-
-  if (!promoExpired && (forceShow || !alreadySeen)){
-    const entryPending = sessionStorage.getItem('prisonersEntrySeen') !== '1';
-
-    if (entryPending){
-      /*
-        On the first visit, wait until ENTER has been pressed.
-        Then leave enough breathing room for the short intro audio before
-        showing the existing event promo.
-      */
-      window.addEventListener('prisonersEntryComplete', () => {
-        schedulePromo(8500);
-      }, {once:true});
-    } else {
-      // Existing behavior for later visits in the same session.
-      schedulePromo(850);
-    }
+    setTimeout(() => {
+      if (popup.classList.contains('is-visible')) hidePopup();
+    }, 9000);
   } else {
     popup.setAttribute('aria-hidden','true');
     popup.style.display = 'none';
