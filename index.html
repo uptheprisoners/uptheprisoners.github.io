@@ -11,6 +11,10 @@
 <meta property="og:description" content="Iron Maiden tribute band από τη Θεσσαλονίκη, ενεργοί από το 2006. 20 Years Anniversary Show — 3 Οκτωβρίου 2026 στο Eightball Live Stage.">
 <meta property="og:locale" content="el_GR">
 <meta name="theme-color" content="#17181c">
+<link rel="canonical" href="https://uptheprisoners.github.io/">
+<link rel="alternate" hreflang="el" href="https://uptheprisoners.github.io/">
+<link rel="alternate" hreflang="en" href="https://uptheprisoners.github.io/en.html">
+<link rel="alternate" hreflang="x-default" href="https://uptheprisoners.github.io/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -708,6 +712,55 @@
     }
   }
 
+
+  /* language switch */
+  .lang-switch{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-left:12px;
+    padding-left:12px;
+    border-left:1px solid var(--line);
+  }
+  .lang-switch a{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    height:30px;
+    padding:0 7px;
+    border:1px solid #3a3d44;
+    color:var(--bone-dim);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.03em;
+    line-height:1;
+  }
+  .lang-switch a:hover{
+    border-color:var(--rust);
+    color:var(--bone);
+  }
+  .lang-switch a.active{
+    border-color:var(--rust);
+    background:#202226;
+    color:var(--bone);
+  }
+  .flag-icon{
+    display:block;
+    width:20px;
+    height:12px;
+    flex:0 0 auto;
+    box-shadow:0 0 0 1px rgba(255,255,255,.12);
+  }
+  @media(max-width:760px){
+    .lang-switch{
+      margin-left:8px;
+      padding-left:8px;
+    }
+    .lang-switch a{
+      padding:0 5px;
+    }
+  }
+
 </style>
 
 <script type="application/ld+json">
@@ -830,6 +883,25 @@
         <a href="https://www.facebook.com/UpThePrisoners.skg" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-9h3l.5-3h-3.5V8.1c0-.9.3-1.6 1.7-1.6H17V3.8c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h3v9h3.5z"/></svg></a>
         <a href="https://www.instagram.com/uptheprisoners.skg/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm11 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg></a>
         <a href="https://www.youtube.com/@the_prisoners" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+      </div>
+      <div class="lang-switch" aria-label="Language">
+        <a href="index.html" class="active" aria-current="page" title="Ελληνικά" aria-label="Ελληνικά"><svg class="flag-icon" viewBox="0 0 27 18" aria-hidden="true">
+  <rect width="27" height="18" fill="#0d5eaf"/>
+  <rect y="2" width="27" height="2" fill="#fff"/>
+  <rect y="6" width="27" height="2" fill="#fff"/>
+  <rect y="10" width="27" height="2" fill="#fff"/>
+  <rect y="14" width="27" height="2" fill="#fff"/>
+  <rect width="10" height="10" fill="#0d5eaf"/>
+  <rect x="4" width="2" height="10" fill="#fff"/>
+  <rect y="4" width="10" height="2" fill="#fff"/>
+</svg><span>GR</span></a>
+        <a href="en.html" title="English" aria-label="English"><svg class="flag-icon" viewBox="0 0 30 18" aria-hidden="true">
+  <rect width="30" height="18" fill="#012169"/>
+  <path d="M0 0 L30 18 M30 0 L0 18" stroke="#fff" stroke-width="4"/>
+  <path d="M0 0 L30 18 M30 0 L0 18" stroke="#C8102E" stroke-width="2"/>
+  <path d="M15 0 V18 M0 9 H30" stroke="#fff" stroke-width="6"/>
+  <path d="M15 0 V18 M0 9 H30" stroke="#C8102E" stroke-width="3.2"/>
+</svg><span>EN</span></a>
       </div>
     </div>
   </div>
