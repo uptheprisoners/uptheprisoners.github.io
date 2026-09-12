@@ -1277,6 +1277,56 @@
     }
   }
 
+
+  /* short intro audio control — bottom left, away from the event popup */
+  .intro-audio-btn{
+    position:fixed;
+    left:18px;
+    bottom:18px;
+    z-index:1200;
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    min-height:38px;
+    padding:8px 11px;
+    border:1px solid #41444c;
+    background:rgba(23,24,28,.92);
+    color:var(--bone-dim);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:12px;
+    line-height:1;
+    cursor:pointer;
+    backdrop-filter:blur(5px);
+    opacity:.82;
+    transition:border-color .15s ease,color .15s ease,opacity .15s ease;
+  }
+  .intro-audio-btn:hover,
+  .intro-audio-btn:focus-visible{
+    border-color:var(--rust);
+    color:var(--bone);
+    opacity:1;
+    outline:none;
+  }
+  .intro-audio-btn svg{
+    width:15px;
+    height:15px;
+    fill:currentColor;
+    flex:0 0 auto;
+  }
+  .intro-audio-btn.is-playing{
+    border-color:rgba(184,80,47,.72);
+    color:var(--bone);
+  }
+  .intro-audio-btn[hidden]{display:none !important;}
+  @media(max-width:600px){
+    .intro-audio-btn{
+      left:10px;
+      bottom:10px;
+      min-height:36px;
+      padding:7px 9px;
+    }
+  }
+
 </style>
 
 <script type="application/ld+json">
@@ -1835,6 +1885,19 @@
 </footer>
 
 
+
+<audio id="prisonerIntroAudio" preload="auto" playsinline>
+  <source src="PrisonerIntro.mp3" type="audio/mpeg">
+</audio>
+<button class="intro-audio-btn" id="introAudioButton" type="button"
+        aria-label="Αναπαραγωγή εισαγωγικού ήχου" aria-pressed="false" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.2-3.9v7.8a4.5 4.5 0 0 0 2.2-3.9zm0-8.2v2.1a7 7 0 0 1 0 12.2v2.1a9 9 0 0 0 0-16.4z"/>
+  </svg>
+  <span>Intro</span>
+</button>
+
+
 <script>
 (function(){
   const popup = document.getElementById('eventMascotPopup');
@@ -1934,6 +1997,103 @@
   start();
 })();
 </script>
+
+
+<script>
+(function(){
+  const audio = document.getElementById('prisonerIntroAudio');
+  const button = document.getElementById('introAudioButton');
+  if (!audio || !button) return;
+
+  const sessionKey = 'prisonersIntroPlayed';
+  const alreadyPlayed = sessionStorage.getItem(sessionKey) === '1';
+
+  audio.volume = 0.72;
+
+  function setPlayingState(playing){
+    button.classList.toggle('is-playing', playing);
+    button.setAttribute('aria-pressed', playing ? 'true' : 'false');
+  }
+
+  function markPlayed(){
+    sessionStorage.setItem(sessionKey, '1');
+  }
+
+  function playIntro(){
+    audio.currentTime = 0;
+    const result = audio.play();
+
+    if (result && typeof result.then === 'function'){
+      return result.then(() => {
+        markPlayed();
+        setPlayingState(true);
+        button.hidden = false;
+        return true;
+      }).catch(() => false);
+    }
+
+    markPlayed();
+    setPlayingState(true);
+    button.hidden = false;
+    return Promise.resolve(true);
+  }
+
+  function showFallback(){
+    button.hidden = false;
+    setPlayingState(false);
+  }
+
+  audio.addEventListener('ended', () => {
+    setPlayingState(false);
+  });
+
+  audio.addEventListener('pause', () => {
+    if (!audio.ended) setPlayingState(false);
+  });
+
+  audio.addEventListener('play', () => {
+    setPlayingState(true);
+  });
+
+  button.addEventListener('click', () => {
+    if (!audio.paused && !audio.ended){
+      audio.pause();
+      return;
+    }
+    playIntro();
+  });
+
+  if (alreadyPlayed){
+    /* Do not replay automatically on every refresh in the same tab/session. */
+    button.hidden = false;
+    return;
+  }
+
+  /*
+    Modern browsers may block audible autoplay.
+    Try immediately; if blocked, start on the visitor's first interaction
+    and also reveal the small Intro button as a manual fallback.
+  */
+  playIntro().then((started) => {
+    if (started) return;
+
+    showFallback();
+
+    const firstInteraction = () => {
+      playIntro().then((ok) => {
+        if (ok){
+          document.removeEventListener('pointerdown', firstInteraction, true);
+          document.removeEventListener('keydown', firstInteraction, true);
+        }
+      });
+    };
+
+    document.addEventListener('pointerdown', firstInteraction, true);
+    document.addEventListener('keydown', firstInteraction, true);
+  });
+})();
+</script>
+
 
 </body>
 </html>
