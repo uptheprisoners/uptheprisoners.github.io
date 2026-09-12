@@ -1,11 +1,25 @@
 THE PRISONERS — OFFICIAL WEBSITE
 
-Hero changes:
-- The live image is now shown as a real image, not a cropped CSS background.
-- The whole band remains visible across desktop sizes.
-- No dark left overlay hides half the band.
-- The main title sits over the empty/dark upper-left area of the photo.
-- All descriptive text and facts were moved below the photo.
-- On mobile, even the title moves below the photo so it never covers faces.
+Pages
+- index.html ........ Greek home
+- en.html ........... English home
+- gallery.html ...... Greek gallery + videos
+- gallery-en.html ... English gallery + videos
+- presskit.html ..... Greek Press Kit / EPK
+- presskit-en.html .. English Press Kit / EPK
+- 404.html .......... Custom not-found page
 
-All V2/V3 SEO, links, event poster and structured data remain.
+Technical SEO
+- sitemap.xml
+- robots.txt
+- site.webmanifest
+- favicon.png / favicon.ico
+- icon-192.png / icon-512.png
+
+Existing image assets used by the site
+- the-prisoners-logo.png
+- prisoners-live.jpg
+- event-poster.jpg
+- eddie-popup.png
+
+Website design & development by Debbie Moraiti.

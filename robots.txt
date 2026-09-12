@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://uptheprisoners.github.io/sitemap.xml

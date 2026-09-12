@@ -13,6 +13,11 @@
 <meta property="og:description" content="Photos from live shows and the history of The Prisoners.">
 <meta property="og:locale" content="en_GB">
 <meta name="theme-color" content="#17181c">
+<meta property="og:image" content="https://uptheprisoners.github.io/prisoners-live.jpg">
+<meta property="og:image:alt" content="The Prisoners live in Thessaloniki">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://uptheprisoners.github.io/prisoners-live.jpg">
+<link rel="manifest" href="site.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
 <link rel="shortcut icon" href="favicon.ico">
 
@@ -718,6 +723,20 @@
     header nav a:nth-child(6){width:35px;}
   }
 
+
+  /* videos section */
+  .videos-section{padding:64px 0 88px;border-top:1px solid var(--line);}
+  .videos-section h2{margin:0 0 10px;font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:30px;}
+  .videos-intro{max-width:62ch;margin:0 0 24px;color:var(--bone-dim);}
+  .video-card{background:var(--panel);border:1px solid #34363c;overflow:hidden;}
+  .video-frame{position:relative;aspect-ratio:16/9;background:#0e0f11;}
+  .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .video-meta{padding:16px 18px 18px;}
+  .video-meta h3{margin:0;font-family:'Oswald',sans-serif;font-size:20px;}
+  .video-meta p{margin:6px 0 0;color:var(--bone-dim);font-size:14px;}
+  .video-channel{display:inline-flex;margin-top:18px;padding:10px 15px;border:1px solid #41444c;color:var(--bone);font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:13px;}
+  .video-channel:hover{border-color:var(--rust);color:var(--rust);}
+
 </style>
 </head>
 
@@ -797,6 +816,24 @@
       </div>
     </div>
   </section>
+
+  <section class="videos-section" id="videos">
+    <div class="wrap">
+      <h2>Videos</h2>
+      <p class="videos-intro">Official video material from The Prisoners. More live videos can be added here over time.</p>
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe src="https://www.youtube-nocookie.com/embed/f1iNU2GatsM" title="The Prisoners official promo video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta">
+          <h3>The Prisoners — Official Promo</h3>
+          <p>Official YouTube video from The Prisoners.</p>
+          <a class="video-channel" href="https://www.youtube.com/@the_prisoners" target="_blank" rel="noopener">YouTube Channel →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>

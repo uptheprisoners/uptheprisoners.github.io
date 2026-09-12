@@ -11,6 +11,11 @@
 <meta property="og:description" content="Iron Maiden tribute band from Thessaloniki, Greece, active since 2006. 20 Years Anniversary Show — 3 October 2026 at Eightball Live Stage.">
 <meta property="og:locale" content="en_GB">
 <meta name="theme-color" content="#17181c">
+<meta property="og:image" content="https://uptheprisoners.github.io/prisoners-live.jpg">
+<meta property="og:image:alt" content="The Prisoners live in Thessaloniki">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://uptheprisoners.github.io/prisoners-live.jpg">
+<link rel="manifest" href="site.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="canonical" href="https://uptheprisoners.github.io/en.html">
@@ -1081,6 +1086,50 @@
     header nav a:nth-child(6){width:35px;}
   }
 
+
+  /* contact / booking */
+  .contact-panel{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:28px;
+    align-items:start;
+    background:var(--panel);
+    border:1px solid #34363c;
+    border-left:4px solid var(--rust);
+    padding:28px;
+  }
+  .contact-kicker{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    font-size:13px;
+    color:var(--rust);
+    margin-bottom:8px;
+  }
+  .contact-panel h3{
+    margin:0 0 10px;
+    font-size:25px;
+  }
+  .contact-panel p{margin:0;max-width:58ch;}
+  .contact-actions{display:grid;gap:10px;}
+  .contact-btn,.presskit-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:44px;
+    padding:10px 16px;
+    border:1px solid #41444c;
+    background:#1a1c20;
+    color:var(--bone);
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    font-size:13px;
+  }
+  .contact-btn:hover,.presskit-btn:hover{border-color:var(--rust);color:var(--rust);}
+  .presskit-row{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;}
+  @media(max-width:700px){.contact-panel{grid-template-columns:1fr;}}
+
 </style>
 
 <script type="application/ld+json">
@@ -1088,6 +1137,8 @@
   "@context": "https://schema.org",
   "@type": "MusicGroup",
   "name": "The Prisoners",
+  "url": "https://uptheprisoners.github.io/",
+  "image": "https://uptheprisoners.github.io/prisoners-live.jpg",
   "description": "Iron Maiden tribute band from Thessaloniki, Greece, active since 2006.",
   "foundingDate": "2006",
   "foundingLocation": {
@@ -1502,7 +1553,11 @@
         </div>
       </div>
 
-<div class="press-source">
+<div class="presskit-row">
+        <a class="presskit-btn" href="presskit-en.html">Press Kit / EPK →</a>
+      </div>
+
+      <div class="press-source">
         For press coverage, interviews or high-resolution material,
         get in touch through the official
         <a href="https://www.facebook.com/UpThePrisoners.skg"
@@ -1539,10 +1594,41 @@
         <div class="name">MusicBrainz</div>
         <div class="sub">MBID: ce0f3932-bee0-420f-9ee0-be5cbfe3a016</div>
       </a>
+      <a class="linkcard" href="presskit-en.html">
+        <div class="name">Press Kit / EPK</div>
+        <div class="sub">Bio · Logo · Press assets</div>
+      </a>
+      <a class="linkcard" href="#contact">
+        <div class="name">Contact / Booking</div>
+        <div class="sub">Live · Press · Collaborations</div>
+      </a>
       <a class="linkcard" href="https://www.wikidata.org/wiki/Q141397106" target="_blank" rel="noopener">
         <div class="name">Wikidata</div>
         <div class="sub">Q141397106</div>
       </a>
+    </div>
+  </div>
+</section>
+
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Contact / Booking</h2>
+    <div class="contact-panel">
+      <div>
+        <div class="contact-kicker">Booking · Press · Collaborations</div>
+        <h3>Contact The Prisoners</h3>
+        <p>
+          For live bookings, interviews, press coverage or collaborations,
+          contact the band through its official social channels.
+          An official booking email can be added here when available.
+        </p>
+      </div>
+      <div class="contact-actions">
+        <a class="contact-btn" href="https://www.facebook.com/UpThePrisoners.skg" target="_blank" rel="noopener">Facebook Page</a>
+        <a class="contact-btn" href="https://www.instagram.com/uptheprisoners.skg/" target="_blank" rel="noopener">Instagram</a>
+        <a class="contact-btn" href="presskit-en.html">Press Kit / EPK</a>
+      </div>
     </div>
   </div>
 </section>
