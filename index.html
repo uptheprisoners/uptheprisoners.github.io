@@ -11,6 +11,8 @@
 <meta property="og:description" content="Iron Maiden tribute band από τη Θεσσαλονίκη, ενεργοί από το 2006. 20 Years Anniversary Show — 3 Οκτωβρίου 2026 στο Eightball Live Stage.">
 <meta property="og:locale" content="el_GR">
 <meta name="theme-color" content="#17181c">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+<link rel="shortcut icon" href="favicon.ico">
 <link rel="canonical" href="https://uptheprisoners.github.io/">
 <link rel="alternate" hreflang="el" href="https://uptheprisoners.github.io/">
 <link rel="alternate" hreflang="en" href="https://uptheprisoners.github.io/en.html">
@@ -761,6 +763,115 @@
     }
   }
 
+
+  /* rotating verified press quotes */
+  .press-quotes{
+    margin-top:24px;
+    border-left:4px solid var(--rust);
+    background:#17191d;
+    position:relative;
+    overflow:hidden;
+  }
+  .press-quotes-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:15px 18px 0 20px;
+  }
+  .press-quotes-title{
+    margin:0;
+    font-family:'Oswald',sans-serif;
+    font-size:13px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--steel);
+  }
+  .press-quote-stage{
+    position:relative;
+    min-height:178px;
+  }
+  .press-quote-slide{
+    display:none;
+    padding:17px 58px 18px 20px;
+    animation:pressQuoteFade .35s ease;
+  }
+  .press-quote-slide.is-active{display:block;}
+  .press-quote-slide blockquote{
+    margin:0;
+    font-family:'Oswald',sans-serif;
+    font-size:22px;
+    line-height:1.35;
+    color:var(--bone);
+  }
+  .press-quote-slide cite{
+    display:block;
+    margin-top:11px;
+    color:var(--steel);
+    font-style:normal;
+    font-size:12px;
+  }
+  .press-quote-slide a{
+    display:inline-block;
+    margin-top:8px;
+    font-size:12px;
+  }
+  .press-quote-nav{
+    position:absolute;
+    right:13px;
+    top:50%;
+    transform:translateY(-50%);
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    z-index:2;
+  }
+  .press-quote-nav button{
+    width:32px;
+    height:32px;
+    padding:0;
+    border:1px solid #3a3d44;
+    background:#202226;
+    color:var(--bone-dim);
+    font-size:18px;
+    line-height:1;
+    cursor:pointer;
+  }
+  .press-quote-nav button:hover,
+  .press-quote-nav button:focus-visible{
+    border-color:var(--rust);
+    color:var(--rust);
+    outline:none;
+  }
+  .press-quote-dots{
+    display:flex;
+    gap:7px;
+    padding:0 20px 17px;
+  }
+  .press-quote-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    border:0;
+    padding:0;
+    background:#4a4d55;
+    cursor:pointer;
+  }
+  .press-quote-dot.is-active{background:var(--rust);}
+  @keyframes pressQuoteFade{
+    from{opacity:0; transform:translateY(4px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @media(max-width:600px){
+    .press-quote-stage{min-height:215px;}
+    .press-quote-slide{padding-right:48px;}
+    .press-quote-slide blockquote{font-size:19px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .press-quote-slide{animation:none;}
+  }
+
 </style>
 
 <script type="application/ld+json">
@@ -1131,15 +1242,58 @@
           <div class="media-desc">Event coverage · Somewhere In Time 40 Years</div>
         </a>
       </div>
+      <div class="press-quotes" data-press-carousel>
+        <div class="press-quotes-head">
+          <h3 class="press-quotes-title">Τι έχουν γράψει για τους The Prisoners</h3>
+        </div>
 
-      <div class="press-quote">
-        <blockquote>“Played every Maiden tune to perfection…”</blockquote>
-        <cite>Phivos Papadopoulos · Pitch Black Records · Metal Underground, 2011</cite>
-        <a href="https://www.metalunderground.com/news/details.cfm?newsid=70156"
-           target="_blank" rel="noopener">Read original article →</a>
+        <div class="press-quote-stage">
+          <article class="press-quote-slide is-active" aria-hidden="false">
+            <blockquote>“An awesome band which simply amazed all of us…”</blockquote>
+            <cite>Phivos Papadopoulos · Pitch Black Records · Metal Underground, 2011</cite>
+            <a href="https://www.metalunderground.com/news/details.cfm?newsid=70156" target="_blank" rel="noopener">Πρωτότυπη δημοσίευση →</a>
+          </article>
+
+          <article class="press-quote-slide" aria-hidden="true">
+            <blockquote>“The perfect recipe for an amazing show!!”</blockquote>
+            <cite>Eightball Club · 2019</cite>
+            <a href="https://eightballclub.gr/event/iron-maiden-a-killer-tribute-by-the-prisoners/" target="_blank" rel="noopener">Πρωτότυπη δημοσίευση →</a>
+          </article>
+
+          <article class="press-quote-slide" aria-hidden="true">
+            <blockquote>«Το καλύτερο ζωντανό αφιέρωμα στην μεγαλύτερη heavy metal μπάντα όλων των εποχών.»</blockquote>
+            <cite>Βιβή Ζαπαντιώτου · Rock Overdose · 2024</cite>
+            <a href="https://rockoverdose.gr/the-prisoners-a-killer-tribute-to-iron-maiden-8ball/" target="_blank" rel="noopener">Πρωτότυπη δημοσίευση →</a>
+          </article>
+
+          <article class="press-quote-slide" aria-hidden="true">
+            <blockquote>«Ένα από τα παλαιότερα Iron Maiden tribute acts στην Ελλάδα.»</blockquote>
+            <cite>Απόστολος Πανταζόγλου · Rock Overdose · 2026</cite>
+            <a href="https://rockoverdose.gr/the-prisoners-epeteiako-live-sto-eightball/" target="_blank" rel="noopener">Πρωτότυπη δημοσίευση →</a>
+          </article>
+
+          <article class="press-quote-slide" aria-hidden="true">
+            <blockquote>«Ανεβαστική βραδιά heavy metal»</blockquote>
+            <cite>Mood / Music of Our Desire · 2025</cite>
+            <a href="https://events.musicofourdesire.com/el/event/qylb-the-prisoners-a-killer-live-tribute-to-iron-maiden-live-thessaloniki-greece" target="_blank" rel="noopener">Πρωτότυπη δημοσίευση →</a>
+          </article>
+
+          <div class="press-quote-nav" aria-label="Πλοήγηση αποσπασμάτων">
+            <button type="button" data-quote-prev aria-label="Προηγούμενο απόσπασμα">‹</button>
+            <button type="button" data-quote-next aria-label="Επόμενο απόσπασμα">›</button>
+          </div>
+        </div>
+
+        <div class="press-quote-dots" aria-label="Επιλογή αποσπάσματος">
+          <button class="press-quote-dot is-active" type="button" aria-label="Απόσπασμα 1" aria-current="true"></button>
+          <button class="press-quote-dot" type="button" aria-label="Απόσπασμα 2" aria-current="false"></button>
+          <button class="press-quote-dot" type="button" aria-label="Απόσπασμα 3" aria-current="false"></button>
+          <button class="press-quote-dot" type="button" aria-label="Απόσπασμα 4" aria-current="false"></button>
+          <button class="press-quote-dot" type="button" aria-label="Απόσπασμα 5" aria-current="false"></button>
+        </div>
       </div>
 
-      <div class="press-source">
+<div class="press-source">
         Για δημοσιεύματα, συνεντεύξεις ή υλικό υψηλής ανάλυσης,
         επικοινωνήστε μέσω της επίσημης σελίδας στο
         <a href="https://www.facebook.com/UpThePrisoners.skg"
@@ -1247,6 +1401,63 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && popup.classList.contains('is-visible')) hidePopup();
   });
+})();
+</script>
+
+
+<script>
+(function(){
+  const carousel = document.querySelector('[data-press-carousel]');
+  if (!carousel) return;
+
+  const slides = Array.from(carousel.querySelectorAll('.press-quote-slide'));
+  const dots = Array.from(carousel.querySelectorAll('.press-quote-dot'));
+  const prev = carousel.querySelector('[data-quote-prev]');
+  const next = carousel.querySelector('[data-quote-next]');
+  if (!slides.length) return;
+
+  let current = 0;
+  let timer = null;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function show(index){
+    current = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      const active = i === current;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+    dots.forEach((dot, i) => {
+      const active = i === current;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-current', active ? 'true' : 'false');
+    });
+  }
+
+  function stop(){
+    if (timer){
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function start(){
+    if (reduceMotion || slides.length < 2) return;
+    stop();
+    timer = setInterval(() => show(current + 1), 6500);
+  }
+
+  prev && prev.addEventListener('click', () => { show(current - 1); start(); });
+  next && next.addEventListener('click', () => { show(current + 1); start(); });
+  dots.forEach((dot, i) => dot.addEventListener('click', () => { show(i); start(); }));
+
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+  carousel.addEventListener('focusin', stop);
+  carousel.addEventListener('focusout', start);
+
+  show(0);
+  start();
 })();
 </script>
 

@@ -13,6 +13,8 @@
 <meta property="og:description" content="Photos from live shows and the history of The Prisoners.">
 <meta property="og:locale" content="en_GB">
 <meta name="theme-color" content="#17181c">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+<link rel="shortcut icon" href="favicon.ico">
 
 <link rel="canonical" href="https://uptheprisoners.github.io/gallery-en.html">
 <link rel="alternate" hreflang="el" href="https://uptheprisoners.github.io/gallery.html">
@@ -363,6 +365,150 @@
     }
   }
 
+
+  /* Keep Gallery header identical to the main page header */
+  header .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 24px;
+  }
+
+  .header-logo-link{
+    display:block;
+    flex:0 0 auto;
+  }
+
+  .header-logo{
+    display:block;
+    width:220px;
+    max-width:30vw;
+    height:auto;
+    object-fit:contain;
+  }
+
+  .nav-side{
+    display:flex;
+    align-items:center;
+    flex-wrap:nowrap;
+    gap:0;
+  }
+
+  nav{
+    display:flex;
+    flex-wrap:wrap;
+  }
+
+  nav a{
+    color:var(--bone-dim);
+    margin-left:22px;
+    font-size:14px;
+    font-family:'IBM Plex Sans',sans-serif;
+    text-transform:none;
+  }
+
+  nav a:hover,
+  nav a.active{
+    color:var(--rust);
+  }
+
+  .social-icons{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-left:18px;
+    padding-left:0;
+    border-left:0;
+  }
+
+  .social-icons a{
+    width:30px;
+    height:30px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid #3a3d44;
+    color:var(--bone-dim);
+    transition:border-color .15s ease, color .15s ease, background .15s ease;
+  }
+
+  .social-icons a:hover{
+    color:var(--rust);
+    border-color:var(--rust);
+    background:#202226;
+  }
+
+  .social-icons svg{
+    width:15px;
+    height:15px;
+    fill:currentColor;
+  }
+
+  @media(max-width:900px){
+    header .wrap{
+      align-items:center;
+      gap:0;
+    }
+
+    .nav-side{
+      justify-content:initial;
+      flex-wrap:nowrap;
+      gap:0;
+    }
+
+    nav{
+      justify-content:initial;
+      row-gap:0;
+    }
+
+    nav a{
+      margin-left:22px;
+    }
+
+    .social-icons{
+      margin-left:18px;
+      padding-left:0;
+    }
+  }
+
+  @media(max-width:760px){
+    header .wrap{
+      flex-direction:row;
+      align-items:flex-start;
+      padding:16px 24px;
+    }
+
+    .header-logo{
+      width:170px;
+      max-width:48vw;
+    }
+
+    .nav-side{
+      width:auto;
+      justify-content:initial;
+      flex-wrap:nowrap;
+    }
+
+    nav{
+      justify-content:initial;
+      align-items:center;
+      row-gap:0;
+    }
+
+    nav a{
+      margin-left:22px;
+      font-size:14px;
+    }
+
+    .social-icons{
+      width:auto;
+      justify-content:initial;
+      margin-left:10px;
+      padding:0;
+      border-top:0;
+    }
+  }
+
 </style>
 </head>
 
@@ -371,7 +517,7 @@
 <header>
   <div class="wrap">
     <a class="header-logo-link" href="en.html" aria-label="The Prisoners home">
-      <img class="header-logo" src="the-prisoners-logo.png" alt="The Prisoners">
+      <img class="official-logo header-logo" src="the-prisoners-logo.png" alt="The Prisoners">
     </a>
 
     <div class="nav-side">
