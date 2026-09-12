@@ -1152,6 +1152,131 @@
     border:0 !important;
   }
 
+
+  /* member cards with live photo — right 1/3 */
+  .member-card{
+    position:relative;
+    min-height:174px;
+    overflow:hidden;
+    padding:0;
+    background:var(--panel);
+    border:1px solid #34363c;
+    border-left:4px solid var(--rust);
+    isolation:isolate;
+  }
+
+  .member-card .member-copy{
+    position:relative;
+    z-index:3;
+    width:68%;
+    min-height:174px;
+    padding:20px 22px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+
+  .member-card .member-photo{
+    position:absolute;
+    z-index:1;
+    top:0;
+    right:0;
+    bottom:0;
+    width:35%;
+    overflow:hidden;
+    clip-path:polygon(16% 0,100% 0,100% 100%,0 100%);
+    background:#111318;
+  }
+
+  .member-card .member-photo img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    opacity:.42;
+    filter:grayscale(.28) saturate(.75) brightness(.72) contrast(1.08);
+    transition:opacity .22s ease, filter .22s ease, transform .22s ease;
+  }
+
+  /* soft dark blend between text and photo */
+  .member-card::after{
+    content:'';
+    position:absolute;
+    z-index:2;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(
+      100deg,
+      rgba(32,34,38,0) 0%,
+      rgba(32,34,38,0) 58%,
+      rgba(32,34,38,.56) 66%,
+      rgba(32,34,38,.10) 78%,
+      rgba(32,34,38,0) 100%
+    );
+  }
+
+  /* subtle diagonal separator */
+  .member-card .member-photo::before{
+    content:'';
+    position:absolute;
+    z-index:2;
+    left:8%;
+    top:-12%;
+    width:1px;
+    height:124%;
+    background:rgba(184,80,47,.34);
+    transform:rotate(8deg);
+    transform-origin:center;
+    box-shadow:0 0 8px rgba(184,80,47,.08);
+    pointer-events:none;
+  }
+
+  .member-card:hover .member-photo img{
+    opacity:.53;
+    filter:grayscale(.16) saturate(.88) brightness(.78) contrast(1.08);
+    transform:scale(1.015);
+  }
+
+  .member-card .member-name{
+    position:relative;
+    z-index:4;
+  }
+
+  .member-card .member-name-gr,
+  .member-card .member-role,
+  .member-card .member-link{
+    position:relative;
+    z-index:4;
+  }
+
+  @media(max-width:680px){
+    .member-card{
+      min-height:164px;
+    }
+    .member-card .member-copy{
+      width:66%;
+      min-height:164px;
+      padding:17px 16px;
+    }
+    .member-card .member-photo{
+      width:38%;
+    }
+    .member-card .member-name{
+      font-size:18px;
+    }
+    .member-card .member-name-gr{
+      font-size:14px;
+    }
+    .member-card .member-role{
+      font-size:13px;
+    }
+    .member-card .member-link{
+      margin-top:9px;
+      font-size:12px;
+    }
+  }
+
 </style>
 
 <script type="application/ld+json">
@@ -1372,7 +1497,7 @@
 
     <h2>Ιστορικό</h2>
 
-    <p>Οι <strong>The Prisoners</strong> είναι Iron Maiden tribute band από τη Θεσσαλονίκη, με πορεία που ξεκινά το 2006. Μέσα στα χρόνια έχουν εμφανιστεί επανειλημμένα σε σκηνές της πόλης και όχι μόνο, με μεγάλο μέρος της live δραστηριότητάς τους να είναι συνδεδεμένο με το Eightball και με επετειακά αφιερώματα στη δισκογραφία των Iron Maiden.</p>
+    <p>Οι <strong>The Prisoners</strong> είναι Iron Maiden tribute band από τη Θεσσαλονίκη, με πορεία που ξεκινά το 2006. Μέσα στα χρόνια έχουν εμφανιστεί επανειλημμένα σε σκηνές της πόλης, με μεγάλο μέρος της live δραστηριότητάς τους να είναι συνδεδεμένο με το Eightball και με επετειακά αφιερώματα στη δισκογραφία των Iron Maiden.</p>
 
     <div class="timeline" style="margin-top:40px;">
 
@@ -1450,45 +1575,75 @@
     <div class="members-grid">
 
       <div class="member-card">
-        <div class="member-name">Cons Marg</div>
-        <div class="member-name-gr">Κώστας Μαργαρίτης</div>
-        <div class="member-role">Lead Vocals / Κύρια Φωνητικά</div>
-        <a class="member-link" href="https://www.facebook.com/cons.marg" target="_blank" rel="noopener">Facebook profile</a>
+        <div class="member-copy">
+          <div class="member-name">Cons Marg</div>
+          <div class="member-name-gr">Κώστας Μαργαρίτης</div>
+          <div class="member-role">Lead Vocals / Κύρια Φωνητικά</div>
+          <a class="member-link" href="https://www.facebook.com/cons.marg" target="_blank" rel="noopener">Facebook profile</a>
+        </div>
+        <div class="member-photo">
+          <img src="member-cons.webp" loading="lazy" decoding="async" alt="Cons Marg live">
+        </div>
       </div>
 
       <div class="member-card">
-        <div class="member-name">Lily Papa</div>
-        <div class="member-name-gr">Λίλυ Παπά</div>
-        <div class="member-role">Backing Vocals / Δεύτερα Φωνητικά</div>
-        <a class="member-link" href="https://www.facebook.com/profile.php?id=100011329137923" target="_blank" rel="noopener">Facebook profile</a>
+        <div class="member-copy">
+          <div class="member-name">Lily Papa</div>
+          <div class="member-name-gr">Λίλυ Παπά</div>
+          <div class="member-role">Backing Vocals / Δεύτερα Φωνητικά</div>
+          <a class="member-link" href="https://www.facebook.com/profile.php?id=100011329137923" target="_blank" rel="noopener">Facebook profile</a>
+        </div>
+        <div class="member-photo">
+          <img src="member-lily.webp" loading="lazy" decoding="async" alt="Lily Papa live">
+        </div>
       </div>
 
       <div class="member-card">
-        <div class="member-name">Teo Savage</div>
-        <div class="member-name-gr">Θεολόγος Σισίνογλου</div>
-        <div class="member-role">Guitar / Κιθάρα</div>
-        <a class="member-link" href="https://www.facebook.com/sisinoglou.theologos" target="_blank" rel="noopener">Facebook profile</a>
+        <div class="member-copy">
+          <div class="member-name">Teo Savage</div>
+          <div class="member-name-gr">Θεολόγος Σισίνογλου</div>
+          <div class="member-role">Guitar / Κιθάρα</div>
+          <a class="member-link" href="https://www.facebook.com/sisinoglou.theologos" target="_blank" rel="noopener">Facebook profile</a>
+        </div>
+        <div class="member-photo">
+          <img src="member-teo.webp" loading="lazy" decoding="async" alt="Teo Savage live">
+        </div>
       </div>
 
       <div class="member-card">
-        <div class="member-name">Jim Tsakyridis</div>
-        <div class="member-name-gr">Δημήτρης Τσακυρίδης</div>
-        <div class="member-role">Guitar / Κιθάρα</div>
-        <a class="member-link" href="https://www.facebook.com/jim.tsak" target="_blank" rel="noopener">Facebook profile</a>
+        <div class="member-copy">
+          <div class="member-name">Jim Tsakyridis</div>
+          <div class="member-name-gr">Δημήτρης Τσακυρίδης</div>
+          <div class="member-role">Guitar / Κιθάρα</div>
+          <a class="member-link" href="https://www.facebook.com/jim.tsak" target="_blank" rel="noopener">Facebook profile</a>
+        </div>
+        <div class="member-photo">
+          <img src="member-jim.webp" loading="lazy" decoding="async" alt="Jim Tsakyridis live">
+        </div>
       </div>
 
       <div class="member-card">
-        <div class="member-name">Fotis Sheriff Toumanides</div>
-        <div class="member-name-gr">Φώτης Τουμανίδης</div>
-        <div class="member-role">Bass / Μπάσο</div>
-        <a class="member-link" href="https://www.facebook.com/fotis.toumanides" target="_blank" rel="noopener">Facebook profile</a>
+        <div class="member-copy">
+          <div class="member-name">Fotis Sheriff Toumanides</div>
+          <div class="member-name-gr">Φώτης Τουμανίδης</div>
+          <div class="member-role">Bass / Μπάσο</div>
+          <a class="member-link" href="https://www.facebook.com/fotis.toumanides" target="_blank" rel="noopener">Facebook profile</a>
+        </div>
+        <div class="member-photo">
+          <img src="member-fotis.webp" loading="lazy" decoding="async" alt="Fotis Sheriff Toumanides live">
+        </div>
       </div>
 
       <div class="member-card">
-        <div class="member-name">Stelios Sioulas</div>
-        <div class="member-name-gr">Στέλιος Σιούλας</div>
-        <div class="member-role">Drums / Τύμπανα</div>
-        <a class="member-link" href="https://www.facebook.com/stelios.sioulas.7" target="_blank" rel="noopener">Facebook profile</a>
+        <div class="member-copy">
+          <div class="member-name">Stelios Sioulas</div>
+          <div class="member-name-gr">Στέλιος Σιούλας</div>
+          <div class="member-role">Drums / Τύμπανα</div>
+          <a class="member-link" href="https://www.facebook.com/stelios.sioulas.7" target="_blank" rel="noopener">Facebook profile</a>
+        </div>
+        <div class="member-photo">
+          <img src="member-stelios.webp" loading="lazy" decoding="async" alt="Stelios Sioulas live">
+        </div>
       </div>
 
     </div>

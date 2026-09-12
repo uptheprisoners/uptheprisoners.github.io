@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Gallery — The Prisoners | Iron Maiden Tribute Band, Thessaloniki</title>
-<meta name="description" content="Gallery of The Prisoners, an Iron Maiden tribute band from Thessaloniki, Greece, active since 2006. Live photos and images from the band’s history will be added soon.">
+<meta name="description" content="Gallery of The Prisoners, an Iron Maiden tribute band from Thessaloniki, Greece, active since 2006. Live photos and official video material.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 
 <meta property="og:type" content="website">
@@ -737,6 +737,131 @@
   .video-channel{display:inline-flex;margin-top:18px;padding:10px 15px;border:1px solid #41444c;color:var(--bone);font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:13px;}
   .video-channel:hover{border-color:var(--rust);color:var(--rust);}
 
+
+  /* live photo gallery */
+  .photos-section{
+    padding:64px 0 88px;
+    border-top:1px solid var(--line);
+  }
+  .photos-section h2{
+    margin:0 0 10px;
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    font-size:30px;
+  }
+  .photos-intro{
+    max-width:62ch;
+    margin:0 0 24px;
+    color:var(--bone-dim);
+  }
+  .photo-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:12px;
+  }
+  .photo-item{
+    position:relative;
+    display:block;
+    margin:0;
+    overflow:hidden;
+    border:1px solid #34363c;
+    background:#0f1013;
+  }
+  .photo-item button{
+    display:block;
+    width:100%;
+    padding:0;
+    border:0;
+    background:transparent;
+    cursor:zoom-in;
+  }
+  .photo-item img{
+    display:block;
+    width:100%;
+    aspect-ratio:3 / 2;
+    object-fit:cover;
+    object-position:center;
+    filter:saturate(.92) brightness(.92);
+    transition:transform .25s ease, filter .25s ease;
+  }
+  .photo-item:hover img,
+  .photo-item:focus-within img{
+    transform:scale(1.025);
+    filter:saturate(1) brightness(1);
+  }
+  .photo-caption{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    padding:22px 12px 9px;
+    color:#eee9df;
+    font-size:11px;
+    letter-spacing:.02em;
+    background:linear-gradient(transparent,rgba(0,0,0,.82));
+    pointer-events:none;
+  }
+
+  .photo-lightbox{
+    position:fixed;
+    inset:0;
+    z-index:3000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+    background:rgba(4,5,7,.94);
+  }
+  .photo-lightbox.is-open{display:flex;}
+  .photo-lightbox-inner{
+    position:relative;
+    max-width:min(1500px,96vw);
+    max-height:94vh;
+  }
+  .photo-lightbox img{
+    display:block;
+    max-width:100%;
+    max-height:90vh;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    box-shadow:0 20px 70px rgba(0,0,0,.7);
+  }
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next{
+    position:absolute;
+    z-index:2;
+    display:grid;
+    place-items:center;
+    width:42px;
+    height:42px;
+    border:1px solid #545860;
+    background:rgba(17,19,24,.9);
+    color:var(--bone);
+    cursor:pointer;
+    font-size:24px;
+  }
+  .lightbox-close{right:0;top:-52px;}
+  .lightbox-prev{left:-52px;top:50%;transform:translateY(-50%);}
+  .lightbox-next{right:-52px;top:50%;transform:translateY(-50%);}
+  .lightbox-close:hover,
+  .lightbox-prev:hover,
+  .lightbox-next:hover{
+    border-color:var(--rust);
+    color:var(--rust);
+  }
+
+  @media(max-width:760px){
+    .photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .photo-lightbox{padding:54px 10px 14px;}
+    .lightbox-close{right:0;top:-46px;}
+    .lightbox-prev{left:6px;top:auto;bottom:8px;transform:none;}
+    .lightbox-next{right:6px;top:auto;bottom:8px;transform:none;}
+  }
+
+  @media(max-width:480px){
+    .photo-grid{grid-template-columns:1fr;}
+  }
+
 </style>
 </head>
 
@@ -798,7 +923,7 @@
       <div class="eyebrow">The Prisoners · Est. 2006</div>
       <h1>Gallery</h1>
       <p class="intro">
-        Photos and videos from live performances and moments throughout the history of The Prisoners.
+        Photos from live performances and moments throughout the history of The Prisoners.
       </p>
     </div>
   </section>
@@ -819,19 +944,59 @@
     </div>
   </section>
 
-<section class="gallery-empty">
+<section class="photos-section" id="photos">
     <div class="wrap">
-      <div class="empty-panel">
-        <div>
-          <h2>Photos coming soon</h2>
-          <p>
-            The photo collection is being prepared. Photos will be added in the next stage.
-          </p>
-          <a class="back-link" href="en.html">← Back to home</a>
-        </div>
+      <h2>Photos</h2>
+      <p class="photos-intro">Live photos of The Prisoners. Click any image to view it full size.</p>
+      <div class="photo-grid">
+        <figure class="photo-item">
+          <button type="button" data-gallery-image data-full="gallery-live-01.webp" aria-label="Teo Savage — Guitar — The Prisoners live">
+            <img src="gallery-live-01.webp" loading="lazy" decoding="async" alt="Teo Savage — Guitar — The Prisoners live">
+          </button>
+          <figcaption class="photo-caption">Teo Savage · Guitar</figcaption>
+        </figure>
+        <figure class="photo-item">
+          <button type="button" data-gallery-image data-full="gallery-live-02.webp" aria-label="Fotis Sheriff Toumanides — Bass — The Prisoners live">
+            <img src="gallery-live-02.webp" loading="lazy" decoding="async" alt="Fotis Sheriff Toumanides — Bass — The Prisoners live">
+          </button>
+          <figcaption class="photo-caption">Fotis Sheriff Toumanides · Bass</figcaption>
+        </figure>
+        <figure class="photo-item">
+          <button type="button" data-gallery-image data-full="gallery-live-03.webp" aria-label="Cons Marg — Lead Vocals — The Prisoners live">
+            <img src="gallery-live-03.webp" loading="lazy" decoding="async" alt="Cons Marg — Lead Vocals — The Prisoners live">
+          </button>
+          <figcaption class="photo-caption">Cons Marg · Lead Vocals</figcaption>
+        </figure>
+        <figure class="photo-item">
+          <button type="button" data-gallery-image data-full="gallery-live-04.webp" aria-label="Jim Tsakyridis — Guitar — The Prisoners live">
+            <img src="gallery-live-04.webp" loading="lazy" decoding="async" alt="Jim Tsakyridis — Guitar — The Prisoners live">
+          </button>
+          <figcaption class="photo-caption">Jim Tsakyridis · Guitar</figcaption>
+        </figure>
+        <figure class="photo-item">
+          <button type="button" data-gallery-image data-full="gallery-live-05.webp" aria-label="Lily Papa — Backing Vocals — The Prisoners live">
+            <img src="gallery-live-05.webp" loading="lazy" decoding="async" alt="Lily Papa — Backing Vocals — The Prisoners live">
+          </button>
+          <figcaption class="photo-caption">Lily Papa · Backing Vocals</figcaption>
+        </figure>
+        <figure class="photo-item">
+          <button type="button" data-gallery-image data-full="gallery-live-06.webp" aria-label="Stelios Sioulas — Drums — The Prisoners live">
+            <img src="gallery-live-06.webp" loading="lazy" decoding="async" alt="Stelios Sioulas — Drums — The Prisoners live">
+          </button>
+          <figcaption class="photo-caption">Stelios Sioulas · Drums</figcaption>
+        </figure>
       </div>
     </div>
   </section>
+
+  <div class="photo-lightbox" id="photoLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <div class="photo-lightbox-inner">
+      <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close">×</button>
+      <button class="lightbox-prev" type="button" data-lightbox-prev aria-label="Previous photo">‹</button>
+      <img src="" alt="">
+      <button class="lightbox-next" type="button" data-lightbox-next aria-label="Next photo">›</button>
+    </div>
+  </div>
 
 </main>
 
@@ -841,6 +1006,56 @@
     <div class="site-credit">Website design &amp; development by Debbie Moraiti</div>
   </div>
 </footer>
+
+
+<script>
+(function(){
+  const buttons = Array.from(document.querySelectorAll('[data-gallery-image]'));
+  const box = document.getElementById('photoLightbox');
+  if (!buttons.length || !box) return;
+
+  const image = box.querySelector('img');
+  const close = box.querySelector('[data-lightbox-close]');
+  const prev = box.querySelector('[data-lightbox-prev]');
+  const next = box.querySelector('[data-lightbox-next]');
+  let current = 0;
+
+  function show(i){
+    current = (i + buttons.length) % buttons.length;
+    const btn = buttons[current];
+    image.src = btn.dataset.full;
+    image.alt = btn.querySelector('img').alt;
+  }
+
+  function open(i){
+    show(i);
+    box.classList.add('is-open');
+    box.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    close.focus();
+  }
+
+  function shut(){
+    box.classList.remove('is-open');
+    box.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    buttons[current].focus();
+  }
+
+  buttons.forEach((btn,i)=>btn.addEventListener('click',()=>open(i)));
+  close.addEventListener('click',shut);
+  prev.addEventListener('click',()=>show(current-1));
+  next.addEventListener('click',()=>show(current+1));
+  box.addEventListener('click',e=>{ if(e.target===box) shut(); });
+
+  document.addEventListener('keydown',e=>{
+    if(!box.classList.contains('is-open')) return;
+    if(e.key==='Escape') shut();
+    if(e.key==='ArrowLeft') show(current-1);
+    if(e.key==='ArrowRight') show(current+1);
+  });
+})();
+</script>
 
 </body>
 </html>
