@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Gallery — The Prisoners | Iron Maiden Tribute Band, Θεσσαλονίκη</title>
-<meta name="description" content="Gallery των The Prisoners, Iron Maiden tribute band από τη Θεσσαλονίκη, ενεργοί από το 2006. Live φωτογραφίες και επίσημο video υλικό.">
+<meta name="description" content="Gallery των The Prisoners, Iron Maiden tribute band από τη Θεσσαλονίκη, με live φωτογραφίες και επίσημο video υλικό.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 
 <meta property="og:type" content="website">
@@ -738,35 +738,39 @@
   .video-channel:hover{border-color:var(--rust);color:var(--rust);}
 
 
-  /* live photo gallery */
+  /* photo gallery */
   .photos-section{
     padding:64px 0 88px;
     border-top:1px solid var(--line);
   }
+
   .photos-section h2{
     margin:0 0 10px;
     font-family:'Oswald',sans-serif;
     text-transform:uppercase;
     font-size:30px;
   }
+
   .photos-intro{
     max-width:62ch;
     margin:0 0 24px;
     color:var(--bone-dim);
   }
+
   .photo-grid{
     display:grid;
     grid-template-columns:repeat(3,minmax(0,1fr));
     gap:12px;
   }
+
   .photo-item{
-    position:relative;
     display:block;
     margin:0;
     overflow:hidden;
     border:1px solid #34363c;
     background:#0f1013;
   }
+
   .photo-item button{
     display:block;
     width:100%;
@@ -775,29 +779,21 @@
     background:transparent;
     cursor:zoom-in;
   }
+
   .photo-item img{
     display:block;
     width:100%;
+    height:auto;
     aspect-ratio:3 / 2;
     object-fit:cover;
-    object-position:center;
+    transition:transform .22s ease, filter .22s ease;
     filter:saturate(.92) brightness(.92);
-    transition:transform .25s ease, filter .25s ease;
   }
+
   .photo-item:hover img,
   .photo-item:focus-within img{
     transform:scale(1.025);
     filter:saturate(1) brightness(1);
-  }
-  .photo-caption{
-    position:absolute;
-    left:0; right:0; bottom:0;
-    padding:22px 12px 9px;
-    color:#eee9df;
-    font-size:11px;
-    letter-spacing:.02em;
-    background:linear-gradient(transparent,rgba(0,0,0,.82));
-    pointer-events:none;
   }
 
   .photo-lightbox{
@@ -808,14 +804,17 @@
     align-items:center;
     justify-content:center;
     padding:28px;
-    background:rgba(4,5,7,.94);
+    background:rgba(4,5,7,.95);
   }
+
   .photo-lightbox.is-open{display:flex;}
+
   .photo-lightbox-inner{
     position:relative;
     max-width:min(1500px,96vw);
     max-height:94vh;
   }
+
   .photo-lightbox img{
     display:block;
     max-width:100%;
@@ -823,8 +822,17 @@
     width:auto;
     height:auto;
     object-fit:contain;
-    box-shadow:0 20px 70px rgba(0,0,0,.7);
+    box-shadow:0 20px 70px rgba(0,0,0,.72);
   }
+
+  .lightbox-counter{
+    position:absolute;
+    left:0;
+    top:-42px;
+    color:var(--bone-dim);
+    font-size:12px;
+  }
+
   .lightbox-close,
   .lightbox-prev,
   .lightbox-next{
@@ -835,14 +843,16 @@
     width:42px;
     height:42px;
     border:1px solid #545860;
-    background:rgba(17,19,24,.9);
+    background:rgba(17,19,24,.92);
     color:var(--bone);
     cursor:pointer;
     font-size:24px;
   }
+
   .lightbox-close{right:0;top:-52px;}
   .lightbox-prev{left:-52px;top:50%;transform:translateY(-50%);}
   .lightbox-next{right:-52px;top:50%;transform:translateY(-50%);}
+
   .lightbox-close:hover,
   .lightbox-prev:hover,
   .lightbox-next:hover{
@@ -851,15 +861,41 @@
   }
 
   @media(max-width:760px){
-    .photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
-    .photo-lightbox{padding:54px 10px 14px;}
+    .photo-grid{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:9px;
+    }
+
+    .photo-lightbox{
+      padding:54px 10px 66px;
+    }
+
     .lightbox-close{right:0;top:-46px;}
-    .lightbox-prev{left:6px;top:auto;bottom:8px;transform:none;}
-    .lightbox-next{right:6px;top:auto;bottom:8px;transform:none;}
+    .lightbox-counter{top:-40px;}
+
+    .lightbox-prev{
+      left:6px;
+      top:auto;
+      bottom:-54px;
+      transform:none;
+    }
+
+    .lightbox-next{
+      right:6px;
+      top:auto;
+      bottom:-54px;
+      transform:none;
+    }
   }
 
   @media(max-width:480px){
-    .photo-grid{grid-template-columns:1fr;}
+    .photo-grid{
+      grid-template-columns:1fr;
+    }
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    .photo-item img{transition:none;}
   }
 
 </style>
@@ -950,50 +986,540 @@
       <p class="photos-intro">Live φωτογραφίες των The Prisoners. Πατήστε σε οποιαδήποτε εικόνα για μεγάλη προβολή.</p>
       <div class="photo-grid">
         <figure class="photo-item">
-          <button type="button" data-gallery-image data-full="gallery-live-01.webp" aria-label="Teo Savage — Guitar — The Prisoners live">
-            <img src="gallery-live-01.webp" loading="lazy" decoding="async" alt="Teo Savage — Guitar — The Prisoners live">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-01.webp"
+                  aria-label="The Prisoners — live φωτογραφία 1">
+            <img src="gallery-thumb-01.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 1">
           </button>
-          <figcaption class="photo-caption">Teo Savage · Κιθάρα</figcaption>
         </figure>
         <figure class="photo-item">
-          <button type="button" data-gallery-image data-full="gallery-live-02.webp" aria-label="Fotis Sheriff Toumanides — Bass — The Prisoners live">
-            <img src="gallery-live-02.webp" loading="lazy" decoding="async" alt="Fotis Sheriff Toumanides — Bass — The Prisoners live">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-02.webp"
+                  aria-label="The Prisoners — live φωτογραφία 2">
+            <img src="gallery-thumb-02.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 2">
           </button>
-          <figcaption class="photo-caption">Fotis Sheriff Toumanides · Μπάσο</figcaption>
         </figure>
         <figure class="photo-item">
-          <button type="button" data-gallery-image data-full="gallery-live-03.webp" aria-label="Cons Marg — Lead Vocals — The Prisoners live">
-            <img src="gallery-live-03.webp" loading="lazy" decoding="async" alt="Cons Marg — Lead Vocals — The Prisoners live">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-03.webp"
+                  aria-label="The Prisoners — live φωτογραφία 3">
+            <img src="gallery-thumb-03.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 3">
           </button>
-          <figcaption class="photo-caption">Cons Marg · Κύρια Φωνητικά</figcaption>
         </figure>
         <figure class="photo-item">
-          <button type="button" data-gallery-image data-full="gallery-live-04.webp" aria-label="Jim Tsakyridis — Guitar — The Prisoners live">
-            <img src="gallery-live-04.webp" loading="lazy" decoding="async" alt="Jim Tsakyridis — Guitar — The Prisoners live">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-04.webp"
+                  aria-label="The Prisoners — live φωτογραφία 4">
+            <img src="gallery-thumb-04.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 4">
           </button>
-          <figcaption class="photo-caption">Jim Tsakyridis · Κιθάρα</figcaption>
         </figure>
         <figure class="photo-item">
-          <button type="button" data-gallery-image data-full="gallery-live-05.webp" aria-label="Lily Papa — Backing Vocals — The Prisoners live">
-            <img src="gallery-live-05.webp" loading="lazy" decoding="async" alt="Lily Papa — Backing Vocals — The Prisoners live">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-05.webp"
+                  aria-label="The Prisoners — live φωτογραφία 5">
+            <img src="gallery-thumb-05.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 5">
           </button>
-          <figcaption class="photo-caption">Lily Papa · Δεύτερα Φωνητικά</figcaption>
         </figure>
         <figure class="photo-item">
-          <button type="button" data-gallery-image data-full="gallery-live-06.webp" aria-label="Stelios Sioulas — Drums — The Prisoners live">
-            <img src="gallery-live-06.webp" loading="lazy" decoding="async" alt="Stelios Sioulas — Drums — The Prisoners live">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-06.webp"
+                  aria-label="The Prisoners — live φωτογραφία 6">
+            <img src="gallery-thumb-06.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 6">
           </button>
-          <figcaption class="photo-caption">Stelios Sioulas · Τύμπανα</figcaption>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-07.webp"
+                  aria-label="The Prisoners — live φωτογραφία 7">
+            <img src="gallery-thumb-07.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 7">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-08.webp"
+                  aria-label="The Prisoners — live φωτογραφία 8">
+            <img src="gallery-thumb-08.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 8">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-09.webp"
+                  aria-label="The Prisoners — live φωτογραφία 9">
+            <img src="gallery-thumb-09.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 9">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-10.webp"
+                  aria-label="The Prisoners — live φωτογραφία 10">
+            <img src="gallery-thumb-10.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 10">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-11.webp"
+                  aria-label="The Prisoners — live φωτογραφία 11">
+            <img src="gallery-thumb-11.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 11">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-12.webp"
+                  aria-label="The Prisoners — live φωτογραφία 12">
+            <img src="gallery-thumb-12.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 12">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-13.webp"
+                  aria-label="The Prisoners — live φωτογραφία 13">
+            <img src="gallery-thumb-13.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 13">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-14.webp"
+                  aria-label="The Prisoners — live φωτογραφία 14">
+            <img src="gallery-thumb-14.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 14">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-15.webp"
+                  aria-label="The Prisoners — live φωτογραφία 15">
+            <img src="gallery-thumb-15.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 15">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-16.webp"
+                  aria-label="The Prisoners — live φωτογραφία 16">
+            <img src="gallery-thumb-16.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 16">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-17.webp"
+                  aria-label="The Prisoners — live φωτογραφία 17">
+            <img src="gallery-thumb-17.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 17">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-18.webp"
+                  aria-label="The Prisoners — live φωτογραφία 18">
+            <img src="gallery-thumb-18.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 18">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-19.webp"
+                  aria-label="The Prisoners — live φωτογραφία 19">
+            <img src="gallery-thumb-19.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 19">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-20.webp"
+                  aria-label="The Prisoners — live φωτογραφία 20">
+            <img src="gallery-thumb-20.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 20">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-21.webp"
+                  aria-label="The Prisoners — live φωτογραφία 21">
+            <img src="gallery-thumb-21.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 21">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-22.webp"
+                  aria-label="The Prisoners — live φωτογραφία 22">
+            <img src="gallery-thumb-22.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 22">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-23.webp"
+                  aria-label="The Prisoners — live φωτογραφία 23">
+            <img src="gallery-thumb-23.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 23">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-24.webp"
+                  aria-label="The Prisoners — live φωτογραφία 24">
+            <img src="gallery-thumb-24.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 24">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-25.webp"
+                  aria-label="The Prisoners — live φωτογραφία 25">
+            <img src="gallery-thumb-25.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 25">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-26.webp"
+                  aria-label="The Prisoners — live φωτογραφία 26">
+            <img src="gallery-thumb-26.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 26">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-27.webp"
+                  aria-label="The Prisoners — live φωτογραφία 27">
+            <img src="gallery-thumb-27.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 27">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-28.webp"
+                  aria-label="The Prisoners — live φωτογραφία 28">
+            <img src="gallery-thumb-28.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 28">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-29.webp"
+                  aria-label="The Prisoners — live φωτογραφία 29">
+            <img src="gallery-thumb-29.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 29">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-30.webp"
+                  aria-label="The Prisoners — live φωτογραφία 30">
+            <img src="gallery-thumb-30.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 30">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-31.webp"
+                  aria-label="The Prisoners — live φωτογραφία 31">
+            <img src="gallery-thumb-31.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 31">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-32.webp"
+                  aria-label="The Prisoners — live φωτογραφία 32">
+            <img src="gallery-thumb-32.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 32">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-33.webp"
+                  aria-label="The Prisoners — live φωτογραφία 33">
+            <img src="gallery-thumb-33.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 33">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-34.webp"
+                  aria-label="The Prisoners — live φωτογραφία 34">
+            <img src="gallery-thumb-34.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 34">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-35.webp"
+                  aria-label="The Prisoners — live φωτογραφία 35">
+            <img src="gallery-thumb-35.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 35">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-36.webp"
+                  aria-label="The Prisoners — live φωτογραφία 36">
+            <img src="gallery-thumb-36.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 36">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-37.webp"
+                  aria-label="The Prisoners — live φωτογραφία 37">
+            <img src="gallery-thumb-37.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 37">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-38.webp"
+                  aria-label="The Prisoners — live φωτογραφία 38">
+            <img src="gallery-thumb-38.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 38">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-39.webp"
+                  aria-label="The Prisoners — live φωτογραφία 39">
+            <img src="gallery-thumb-39.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 39">
+          </button>
+        </figure>
+        <figure class="photo-item">
+          <button type="button"
+                  data-gallery-image
+                  data-full="gallery-photo-40.webp"
+                  aria-label="The Prisoners — live φωτογραφία 40">
+            <img src="gallery-thumb-40.webp"
+                 width="540"
+                 height="360"
+                 loading="lazy"
+                 decoding="async"
+                 alt="The Prisoners — live φωτογραφία 40">
+          </button>
         </figure>
       </div>
     </div>
   </section>
 
-  <div class="photo-lightbox" id="photoLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Προβολή φωτογραφιών">
+  <div class="photo-lightbox"
+       id="photoLightbox"
+       aria-hidden="true"
+       role="dialog"
+       aria-modal="true"
+       aria-label="Προβολή φωτογραφιών">
     <div class="photo-lightbox-inner">
+      <div class="lightbox-counter" data-lightbox-counter></div>
       <button class="lightbox-close" type="button" data-lightbox-close aria-label="Κλείσιμο">×</button>
       <button class="lightbox-prev" type="button" data-lightbox-prev aria-label="Προηγούμενη φωτογραφία">‹</button>
-      <img src="" alt="">
+      <img data-lightbox-image src="" alt="">
       <button class="lightbox-next" type="button" data-lightbox-next aria-label="Επόμενη φωτογραφία">›</button>
     </div>
   </div>
@@ -1014,21 +1540,23 @@
   const box = document.getElementById('photoLightbox');
   if (!buttons.length || !box) return;
 
-  const image = box.querySelector('img');
+  const image = box.querySelector('[data-lightbox-image]');
+  const counter = box.querySelector('[data-lightbox-counter]');
   const close = box.querySelector('[data-lightbox-close]');
   const prev = box.querySelector('[data-lightbox-prev]');
   const next = box.querySelector('[data-lightbox-next]');
   let current = 0;
 
-  function show(i){
-    current = (i + buttons.length) % buttons.length;
+  function show(index){
+    current = (index + buttons.length) % buttons.length;
     const btn = buttons[current];
     image.src = btn.dataset.full;
     image.alt = btn.querySelector('img').alt;
+    counter.textContent = (current + 1) + ' / ' + buttons.length;
   }
 
-  function open(i){
-    show(i);
+  function open(index){
+    show(index);
     box.classList.add('is-open');
     box.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
@@ -1039,20 +1567,27 @@
     box.classList.remove('is-open');
     box.setAttribute('aria-hidden','true');
     document.body.style.overflow='';
+    image.src='';
     buttons[current].focus();
   }
 
-  buttons.forEach((btn,i)=>btn.addEventListener('click',()=>open(i)));
+  buttons.forEach((btn,index)=>{
+    btn.addEventListener('click',()=>open(index));
+  });
+
   close.addEventListener('click',shut);
   prev.addEventListener('click',()=>show(current-1));
   next.addEventListener('click',()=>show(current+1));
-  box.addEventListener('click',e=>{ if(e.target===box) shut(); });
 
-  document.addEventListener('keydown',e=>{
+  box.addEventListener('click',event=>{
+    if(event.target === box) shut();
+  });
+
+  document.addEventListener('keydown',event=>{
     if(!box.classList.contains('is-open')) return;
-    if(e.key==='Escape') shut();
-    if(e.key==='ArrowLeft') show(current-1);
-    if(e.key==='ArrowRight') show(current+1);
+    if(event.key === 'Escape') shut();
+    if(event.key === 'ArrowLeft') show(current-1);
+    if(event.key === 'ArrowRight') show(current+1);
   });
 })();
 </script>

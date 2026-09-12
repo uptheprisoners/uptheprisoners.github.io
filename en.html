@@ -1194,8 +1194,8 @@
     height:100%;
     object-fit:cover;
     object-position:center;
-    opacity:.66;
-    filter:grayscale(.08) saturate(.94) brightness(.96) contrast(1.04);
+    opacity:.42;
+    filter:grayscale(.28) saturate(.75) brightness(.72) contrast(1.08);
     transition:opacity .22s ease, filter .22s ease, transform .22s ease;
   }
 
@@ -1210,8 +1210,8 @@
       100deg,
       rgba(32,34,38,0) 0%,
       rgba(32,34,38,0) 58%,
-      rgba(32,34,38,.34) 66%,
-      rgba(32,34,38,.06) 78%,
+      rgba(32,34,38,.56) 66%,
+      rgba(32,34,38,.10) 78%,
       rgba(32,34,38,0) 100%
     );
   }
@@ -1225,7 +1225,7 @@
     top:-12%;
     width:1px;
     height:124%;
-    background:rgba(184,80,47,.22);
+    background:rgba(184,80,47,.34);
     transform:rotate(8deg);
     transform-origin:center;
     box-shadow:0 0 8px rgba(184,80,47,.08);
@@ -1233,8 +1233,8 @@
   }
 
   .member-card:hover .member-photo img{
-    opacity:.78;
-    filter:grayscale(0) saturate(1) brightness(1.02) contrast(1.04);
+    opacity:.53;
+    filter:grayscale(.16) saturate(.88) brightness(.78) contrast(1.08);
     transform:scale(1.015);
   }
 
@@ -1275,19 +1275,6 @@
       margin-top:9px;
       font-size:12px;
     }
-  }
-
-
-  /* extra visibility only for Lily + Stelios */
-  .member-card.member-focus .member-photo img{
-    opacity:.78;
-    filter:grayscale(0) saturate(1.02) brightness(1.08) contrast(1.05);
-  }
-
-  .member-card.member-focus:hover .member-photo img{
-    opacity:.90;
-    filter:grayscale(0) saturate(1.05) brightness(1.13) contrast(1.05);
-    transform:scale(1.015);
   }
 
 </style>
@@ -1599,7 +1586,7 @@
         </div>
       </div>
 
-      <div class="member-card member-focus member-lily">
+      <div class="member-card">
         <div class="member-copy">
           <div class="member-name">Lily Papa</div>
           <div class="member-name-gr">Λίλυ Παπά</div>
@@ -1647,7 +1634,7 @@
         </div>
       </div>
 
-      <div class="member-card member-focus member-stelios">
+      <div class="member-card">
         <div class="member-copy">
           <div class="member-name">Stelios Sioulas</div>
           <div class="member-name-gr">Στέλιος Σιούλας</div>
