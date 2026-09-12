@@ -1130,6 +1130,20 @@
   .presskit-row{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;}
   @media(max-width:700px){.contact-panel{grid-template-columns:1fr;}}
 
+
+  /* SEO/accessibility: visible to crawlers & screen readers, not visually */
+  .sr-only{
+    position:absolute !important;
+    width:1px !important;
+    height:1px !important;
+    padding:0 !important;
+    margin:-1px !important;
+    overflow:hidden !important;
+    clip:rect(0,0,0,0) !important;
+    white-space:nowrap !important;
+    border:0 !important;
+  }
+
 </style>
 
 <script type="application/ld+json">
@@ -1279,8 +1293,9 @@
 </header>
 
 <section class="hero">
+  <h1 class="sr-only">The Prisoners — Iron Maiden Tribute Band, Θεσσαλονίκη</h1>
   <div class="hero-media">
-    <img src="prisoners-live.jpg" alt="The Prisoners live at Eightball in Thessaloniki with the audience">
+    <img src="prisoners-live.webp" width="1600" height="1067" loading="eager" fetchpriority="high" decoding="async" alt="The Prisoners live at Eightball in Thessaloniki with the audience">
     <div class="hero-title">
       <img class="official-logo hero-official-logo" src="the-prisoners-logo.png" alt="The Prisoners">
       <div class="mini-tag">Iron Maiden Tribute Band • Thessaloniki • Est. 2006</div>
@@ -1299,7 +1314,7 @@
     <h2>Επόμενη Εμφάνιση</h2>
     <div class="live-layout">
       <div>
-        <img class="event-poster" src="event-poster.jpg" alt="The Prisoners — 20 Years Anniversary / 40 Years Somewhere in Time — 3 Οκτωβρίου 2026, Eightball Live Stage, Θεσσαλονίκη">
+        <img class="event-poster" src="event-poster.webp" width="1200" height="1480" loading="lazy" decoding="async" alt="The Prisoners — 20 Years Anniversary / 40 Years Somewhere in Time — 3 Οκτωβρίου 2026, Eightball Live Stage, Θεσσαλονίκη">
       </div>
 
       <div class="show-card">
@@ -1348,7 +1363,7 @@
 
     <h2>Ιστορικό</h2>
 
-    <p>Οι <strong>The Prisoners</strong> είναι Iron Maiden tribute band από τη Θεσσαλονίκη, με πορεία που ξεκινά το 2006. Μέσα στα χρόνια έχουν εμφανιστεί επανειλημμένα σε σκηνές της πόλης και όχι μόνο, με μεγάλο μέρος της live δραστηριότητάς τους να είναι συνδεδεμένο με το Eightball και με επετειακά αφιερώματα στη δισκογραφία των Iron Maiden.</p>
+    <p>Οι <strong>The Prisoners</strong> είναι Iron Maiden tribute band από τη Θεσσαλονίκη, με πορεία που ξεκινά το 2006. Μέσα στα χρόνια έχουν εμφανιστεί επανειλημμένα σε σκηνές της πόλης, με μεγάλο μέρος της live δραστηριότητάς τους να είναι συνδεδεμένο με το Eightball και με επετειακά αφιερώματα στη δισκογραφία των Iron Maiden.</p>
 
     <div class="timeline" style="margin-top:40px;">
 
@@ -1636,7 +1651,7 @@
 
 <div class="event-mascot-popup" id="eventMascotPopup" role="dialog" aria-label="Πρόσκληση για το επερχόμενο live">
   <button class="event-mascot-close" id="eventMascotClose" type="button" aria-label="Κλείσιμο">×</button>
-  <img class="event-mascot-art" src="eddie-popup.png" alt="Metal mascot που προσκαλεί στο live των The Prisoners στις 3 Οκτωβρίου στο Eightball">
+  <img class="event-mascot-art" src="eddie-popup.webp" width="376" height="485" decoding="async" alt="Metal mascot που προσκαλεί στο live των The Prisoners στις 3 Οκτωβρίου στο Eightball">
   <div class="event-mascot-actions">
     <a class="event-mascot-ticket" href="https://cometogether.live/el/event/6170/the-prisoners-somewhere-in-time-40-years-anniversary-20-years-the-prisoners-2006-2026" target="_blank" rel="noopener">Tickets →</a>
     <div class="event-mascot-note">3 October 2026 · Eightball · Thessaloniki</div>
