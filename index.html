@@ -1277,6 +1277,19 @@
     }
   }
 
+
+  /* extra visibility only for Lily + Stelios */
+  .member-card.member-focus .member-photo img{
+    opacity:.78;
+    filter:grayscale(0) saturate(1.02) brightness(1.08) contrast(1.05);
+  }
+
+  .member-card.member-focus:hover .member-photo img{
+    opacity:.90;
+    filter:grayscale(0) saturate(1.05) brightness(1.13) contrast(1.05);
+    transform:scale(1.015);
+  }
+
 </style>
 
 <script type="application/ld+json">
@@ -1586,7 +1599,7 @@
         </div>
       </div>
 
-      <div class="member-card">
+      <div class="member-card member-focus member-lily">
         <div class="member-copy">
           <div class="member-name">Lily Papa</div>
           <div class="member-name-gr">Λίλυ Παπά</div>
@@ -1634,7 +1647,7 @@
         </div>
       </div>
 
-      <div class="member-card">
+      <div class="member-card member-focus member-stelios">
         <div class="member-copy">
           <div class="member-name">Stelios Sioulas</div>
           <div class="member-name-gr">Στέλιος Σιούλας</div>
