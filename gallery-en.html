@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gallery — The Prisoners | Iron Maiden Tribute Band, Thessaloniki</title>
+<meta name="description" content="Gallery of The Prisoners, an Iron Maiden tribute band from Thessaloniki, Greece, active since 2006. Live photos and images from the band’s history will be added soon.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gallery — The Prisoners">
+<meta property="og:description" content="Photos from live shows and the history of The Prisoners.">
+<meta property="og:locale" content="en_GB">
+<meta name="theme-color" content="#17181c">
+
+<link rel="canonical" href="https://uptheprisoners.github.io/gallery-en.html">
+<link rel="alternate" hreflang="el" href="https://uptheprisoners.github.io/gallery.html">
+<link rel="alternate" hreflang="en" href="https://uptheprisoners.github.io/gallery-en.html">
+<link rel="alternate" hreflang="x-default" href="https://uptheprisoners.github.io/gallery.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#17181c;
+    --panel:#202226;
+    --panel-2:#2a2c31;
+    --rust:#b8502f;
+    --rust-dim:#8a3c22;
+    --steel:#8993a1;
+    --bone:#ece7dc;
+    --bone-dim:#b9b3a5;
+    --line:#2c2e33;
+  }
+
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      repeating-linear-gradient(
+        115deg,
+        rgba(255,255,255,.012) 0,
+        rgba(255,255,255,.012) 1px,
+        transparent 1px,
+        transparent 14px
+      ),
+      var(--ink);
+    color:var(--bone);
+    font-family:'IBM Plex Sans',sans-serif;
+    line-height:1.65;
+  }
+
+  a{color:var(--rust);text-decoration:none;}
+  a:hover{color:#d4693e;}
+
+  .wrap{
+    max-width:900px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  header{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(23,24,28,.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+
+  header .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 24px;
+  }
+
+  .header-logo-link{
+    display:block;
+    flex:0 0 auto;
+  }
+
+  .header-logo{
+    display:block;
+    width:220px;
+    max-width:30vw;
+    height:auto;
+    object-fit:contain;
+  }
+
+  .nav-side{
+    display:flex;
+    align-items:center;
+  }
+
+  nav{
+    display:flex;
+    flex-wrap:wrap;
+  }
+
+  nav a{
+    color:var(--bone-dim);
+    margin-left:22px;
+    font-size:14px;
+    font-family:'IBM Plex Sans',sans-serif;
+  }
+
+  nav a:hover,
+  nav a.active{
+    color:var(--rust);
+  }
+
+  .social-icons{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-left:18px;
+    padding-left:18px;
+    border-left:1px solid var(--line);
+  }
+
+  .social-icons a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:28px;
+    height:28px;
+    color:var(--bone-dim);
+  }
+
+  .social-icons a:hover{color:var(--rust);}
+
+  .social-icons svg{
+    width:18px;
+    height:18px;
+    fill:currentColor;
+  }
+
+  main{
+    min-height:calc(100vh - 170px);
+  }
+
+  .gallery-hero{
+    padding:92px 0 34px;
+  }
+
+  .eyebrow{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.09em;
+    color:var(--rust);
+    font-size:14px;
+    margin-bottom:9px;
+  }
+
+  h1{
+    margin:0;
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    font-weight:700;
+    letter-spacing:.01em;
+    font-size:clamp(48px,9vw,88px);
+    line-height:.95;
+    color:var(--bone);
+  }
+
+  .intro{
+    max-width:61ch;
+    margin:22px 0 0;
+    color:var(--bone-dim);
+    font-size:17px;
+  }
+
+  .gallery-empty{
+    padding:22px 0 92px;
+  }
+
+  .empty-panel{
+    min-height:280px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:48px 28px;
+    background:var(--panel);
+    border:1px solid #34363c;
+    border-left:4px solid var(--rust);
+  }
+
+  .empty-panel h2{
+    margin:0;
+    font-family:'Oswald',sans-serif;
+    font-size:28px;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+    color:var(--bone);
+  }
+
+  .empty-panel p{
+    max-width:52ch;
+    margin:12px auto 0;
+    color:var(--bone-dim);
+  }
+
+  .back-link{
+    display:inline-block;
+    margin-top:24px;
+    padding:10px 18px;
+    border:1px solid #444750;
+    color:var(--bone);
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    font-size:13px;
+  }
+
+  .back-link:hover{
+    border-color:var(--rust);
+    color:var(--rust);
+  }
+
+  footer{
+    padding:40px 0 60px;
+    color:var(--steel);
+    font-size:13px;
+  }
+
+  footer .wrap{
+    border-top:1px solid var(--line);
+    padding-top:24px;
+  }
+
+  .site-credit{
+    margin-top:18px;
+    padding-top:14px;
+    border-top:1px solid rgba(137,147,161,.18);
+    color:#747d89;
+    font-size:11px;
+    letter-spacing:.02em;
+  }
+
+  @media(max-width:900px){
+    header .wrap{
+      align-items:flex-start;
+      gap:15px;
+    }
+
+    .nav-side{
+      justify-content:flex-end;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    nav{
+      justify-content:flex-end;
+      row-gap:8px;
+    }
+
+    nav a{
+      margin-left:16px;
+    }
+
+    .social-icons{
+      margin-left:12px;
+      padding-left:12px;
+    }
+  }
+
+  @media(max-width:760px){
+    header .wrap{
+      flex-direction:column;
+      align-items:center;
+      padding:12px 18px 14px;
+    }
+
+    .header-logo{
+      width:170px;
+      max-width:70vw;
+    }
+
+    .nav-side{
+      justify-content:center;
+      width:100%;
+    }
+
+    nav{
+      justify-content:center;
+    }
+
+    nav a{
+      margin:0 8px;
+      font-size:13px;
+    }
+
+    .social-icons{
+      width:100%;
+      justify-content:center;
+      margin:4px 0 0;
+      padding:8px 0 0;
+      border-left:0;
+      border-top:1px solid var(--line);
+    }
+
+    .gallery-hero{
+      padding:64px 0 26px;
+    }
+
+    .gallery-empty{
+      padding-bottom:64px;
+    }
+  }
+
+  /* language switch */
+  .lang-switch{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-left:12px;
+    padding-left:12px;
+    border-left:1px solid var(--line);
+  }
+  .lang-switch a{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    height:30px;
+    padding:0 7px;
+    border:1px solid #3a3d44;
+    color:var(--bone-dim);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.03em;
+    line-height:1;
+  }
+  .lang-switch a:hover{
+    border-color:var(--rust);
+    color:var(--bone);
+  }
+  .lang-switch a.active{
+    border-color:var(--rust);
+    background:#202226;
+    color:var(--bone);
+  }
+  .flag-icon{
+    display:block;
+    width:20px;
+    height:12px;
+    flex:0 0 auto;
+    box-shadow:0 0 0 1px rgba(255,255,255,.12);
+  }
+  @media(max-width:760px){
+    .lang-switch{
+      margin-left:8px;
+      padding-left:8px;
+    }
+    .lang-switch a{
+      padding:0 5px;
+    }
+  }
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="header-logo-link" href="en.html" aria-label="The Prisoners home">
+      <img class="header-logo" src="the-prisoners-logo.png" alt="The Prisoners">
+    </a>
+
+    <div class="nav-side">
+      <nav aria-label="Main navigation">
+        <a href="en.html#live">Live</a>
+        <a href="en.html#about">History</a>
+        <a href="en.html#members">Members</a>
+        <a href="en.html#press">Press</a>
+        <a href="gallery-en.html" class="active" aria-current="page">Gallery</a>
+        <a href="en.html#links">Links</a>
+      </nav>
+
+      <div class="social-icons" aria-label="Social media">
+        <a href="https://www.facebook.com/UpThePrisoners.skg" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-9h3l.5-3h-3.5V8.1c0-.9.3-1.6 1.7-1.6H17V3.8c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h3v9h3.5z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/uptheprisoners.skg/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm11 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@the_prisoners" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg>
+        </a>
+      </div>
+      <div class="lang-switch" aria-label="Language">
+        <a href="gallery.html" title="Ελληνικά" aria-label="Ελληνικά"><svg class="flag-icon" viewBox="0 0 27 18" aria-hidden="true">
+  <rect width="27" height="18" fill="#0d5eaf"/>
+  <rect y="2" width="27" height="2" fill="#fff"/>
+  <rect y="6" width="27" height="2" fill="#fff"/>
+  <rect y="10" width="27" height="2" fill="#fff"/>
+  <rect y="14" width="27" height="2" fill="#fff"/>
+  <rect width="10" height="10" fill="#0d5eaf"/>
+  <rect x="4" width="2" height="10" fill="#fff"/>
+  <rect y="4" width="10" height="2" fill="#fff"/>
+</svg><span>GR</span></a>
+        <a href="gallery-en.html" class="active" aria-current="page" title="English" aria-label="English"><svg class="flag-icon" viewBox="0 0 30 18" aria-hidden="true">
+  <rect width="30" height="18" fill="#012169"/>
+  <path d="M0 0 L30 18 M30 0 L0 18" stroke="#fff" stroke-width="4"/>
+  <path d="M0 0 L30 18 M30 0 L0 18" stroke="#C8102E" stroke-width="2"/>
+  <path d="M15 0 V18 M0 9 H30" stroke="#fff" stroke-width="6"/>
+  <path d="M15 0 V18 M0 9 H30" stroke="#C8102E" stroke-width="3.2"/>
+</svg><span>EN</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="gallery-hero">
+    <div class="wrap">
+      <div class="eyebrow">The Prisoners · Est. 2006</div>
+      <h1>Gallery</h1>
+      <p class="intro">
+        Photos from live performances and moments throughout the history of The Prisoners.
+      </p>
+    </div>
+  </section>
+
+  <section class="gallery-empty">
+    <div class="wrap">
+      <div class="empty-panel">
+        <div>
+          <h2>Photos coming soon</h2>
+          <p>
+            The photo collection is being prepared. Photos will be added in the next stage.
+          </p>
+          <a class="back-link" href="en.html">← Back to home</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    The Prisoners · Iron Maiden Tribute Band · Thessaloniki · Est. 2006
+    <div class="site-credit">Website design &amp; development by Debbie Moraiti</div>
+  </div>
+</footer>
+
+</body>
+</html>
