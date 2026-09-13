@@ -1326,6 +1326,90 @@
       padding:7px 9px;
     }
   }
+
+  /* Contact message modal */
+  .contact-message-modal{
+    position:fixed;
+    inset:0;
+    z-index:1200;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    background:rgba(5,6,8,.78);
+    backdrop-filter:blur(5px);
+  }
+  .contact-message-modal.is-open{display:flex;}
+  .contact-message-dialog{
+    position:relative;
+    width:min(560px,100%);
+    max-height:calc(100vh - 48px);
+    overflow:auto;
+    background:#17191d;
+    border:1px solid #3b3e45;
+    border-top:3px solid var(--rust);
+    box-shadow:0 22px 70px rgba(0,0,0,.62);
+    padding:28px;
+  }
+  .contact-message-dialog h3{font-size:24px;margin:0 42px 6px 0;}
+  .contact-message-dialog > p{margin:0 0 20px;}
+  .contact-message-close{
+    position:absolute;
+    top:14px;
+    right:14px;
+    width:36px;
+    height:36px;
+    border:1px solid #444750;
+    background:transparent;
+    color:var(--bone);
+    font-size:24px;
+    line-height:1;
+    cursor:pointer;
+  }
+  .contact-message-close:hover{border-color:var(--rust);color:var(--rust);}
+  .contact-form-field{margin-top:14px;}
+  .contact-form-field label{
+    display:block;
+    margin-bottom:6px;
+    color:var(--bone);
+    font-size:13px;
+    font-weight:600;
+  }
+  .contact-form-field input,
+  .contact-form-field textarea{
+    width:100%;
+    border:1px solid #444750;
+    background:#101216;
+    color:var(--bone);
+    font:inherit;
+    padding:11px 12px;
+    border-radius:0;
+  }
+  .contact-form-field textarea{min-height:150px;resize:vertical;}
+  .contact-form-field input:focus,
+  .contact-form-field textarea:focus{
+    outline:2px solid rgba(184,80,47,.45);
+    border-color:var(--rust);
+  }
+  .contact-form-submit{
+    margin-top:18px;
+    border:1px solid var(--rust);
+    background:var(--rust);
+    color:var(--ink);
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    padding:11px 20px;
+    cursor:pointer;
+  }
+  .contact-form-submit:hover{background:#d4693e;}
+  .contact-form-submit:disabled{opacity:.6;cursor:wait;}
+  .contact-form-status{min-height:24px;margin-top:12px;font-size:13px;color:var(--steel);}
+  .contact-form-status.is-success{color:#9bc7a1;}
+  .contact-form-status.is-error{color:#e39a84;}
+  body.contact-modal-open{overflow:hidden;}
+
 </style>
 
 <script type="application/ld+json">
@@ -1922,6 +2006,7 @@
         </p>
       </div>
       <div class="contact-actions">
+        <button class="contact-btn" type="button" data-contact-open>Αποστολή μηνύματος</button>
         <a class="contact-btn" href="https://www.facebook.com/UpThePrisoners.skg" target="_blank" rel="noopener">Facebook Page</a>
         <a class="contact-btn" href="https://www.instagram.com/uptheprisoners.skg/" target="_blank" rel="noopener">Instagram</a>
         <a class="contact-btn" href="presskit.html">Press Kit / EPK</a>
@@ -1930,6 +2015,33 @@
   </div>
 </section>
 
+
+<div class="contact-message-modal" id="contactMessageModal" role="dialog" aria-modal="true" aria-labelledby="contactMessageTitle" aria-hidden="true">
+  <div class="contact-message-dialog">
+    <button class="contact-message-close" type="button" data-contact-close aria-label="Κλείσιμο">×</button>
+    <h3 id="contactMessageTitle">Στείλτε μήνυμα</h3>
+    <p>Συμπληρώστε τη φόρμα και το μήνυμά σας θα σταλεί απευθείας στους The Prisoners.</p>
+
+    <form id="contactMessageForm" action="https://formspree.io/f/myeyqeld" method="POST">
+      <div class="contact-form-field">
+        <label for="contactName">Όνομα</label>
+        <input id="contactName" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="contact-form-field">
+        <label for="contactEmail">Email</label>
+        <input id="contactEmail" name="email" type="email" autocomplete="email" required>
+      </div>
+      <div class="contact-form-field">
+        <label for="contactMessage">Μήνυμα</label>
+        <textarea id="contactMessage" name="message" required></textarea>
+      </div>
+      <input type="hidden" name="_subject" value="The Prisoners — Website contact">
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+      <button class="contact-form-submit" type="submit">Αποστολή</button>
+      <div class="contact-form-status" id="contactFormStatus" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
 
 <div class="event-mascot-popup" id="eventMascotPopup" role="dialog" aria-label="Πρόσκληση για το επερχόμενο live">
   <button class="event-mascot-close" id="eventMascotClose" type="button" aria-label="Κλείσιμο">×</button>
@@ -2060,6 +2172,74 @@
 
 
 
+
+
+<script>
+(function(){
+  const modal = document.getElementById('contactMessageModal');
+  const openBtn = document.querySelector('[data-contact-open]');
+  const closeBtn = modal && modal.querySelector('[data-contact-close]');
+  const form = document.getElementById('contactMessageForm');
+  const status = document.getElementById('contactFormStatus');
+  const submitBtn = form && form.querySelector('.contact-form-submit');
+  if (!modal || !openBtn || !closeBtn || !form || !status || !submitBtn) return;
+
+  let lastFocused = null;
+
+  function openModal(){
+    lastFocused = document.activeElement;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('contact-modal-open');
+    const firstInput = form.querySelector('input:not([type="hidden"]):not([name="_gotcha"])');
+    if (firstInput) firstInput.focus();
+  }
+
+  function closeModal(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('contact-modal-open');
+    if (lastFocused) lastFocused.focus();
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    status.className = 'contact-form-status';
+    status.textContent = 'Αποστολή…';
+
+    try{
+      const response = await fetch(form.action, {
+        method:'POST',
+        body:new FormData(form),
+        headers:{'Accept':'application/json'}
+      });
+
+      if (!response.ok) throw new Error('send failed');
+
+      form.reset();
+      status.className = 'contact-form-status is-success';
+      status.textContent = 'Το μήνυμα στάλθηκε. Ευχαριστούμε!';
+    }catch(err){
+      status.className = 'contact-form-status is-error';
+      status.textContent = 'Δεν ήταν δυνατή η αποστολή. Δοκιμάστε ξανά σε λίγο.';
+    }finally{
+      submitBtn.disabled = false;
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
