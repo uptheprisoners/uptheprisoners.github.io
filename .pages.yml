@@ -47,7 +47,6 @@ content:
       - name: poster
         label: Poster
         type: image
-        required: true
         options:
           media: site-images
           extensions: [jpg, jpeg, png, webp]
@@ -62,7 +61,6 @@ content:
       - name: venue
         label: Venue / Address
         type: string
-        required: true
       - name: description
         label: Description
         type: rich-text
