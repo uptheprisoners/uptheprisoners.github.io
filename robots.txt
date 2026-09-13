@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://uptheprisoners.github.io/sitemap.xml
+Sitemap: https://uptheprisoners.gr/sitemap.xml
