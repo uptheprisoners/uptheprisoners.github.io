@@ -15,10 +15,19 @@ content:
         label: Message
         type: text
 
-  - name: event-test
-    label: Event Test
-    type: file
-    path: cms-test/event.json
+  - name: events-test
+    label: Events Test
+    type: collection
+    path: cms-test/events
+    format: json
+    filename: "{date}-{title}.json"
+    view:
+      fields: [title, date, venue]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
     fields:
       - name: title
         label: Event title
