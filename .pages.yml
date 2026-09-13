@@ -14,3 +14,28 @@ content:
       - name: message
         label: Message
         type: text
+
+  - name: event-test
+    label: Event Test
+    type: file
+    path: cms-test/event.json
+    fields:
+      - name: title
+        label: Event title
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: venue
+        label: Venue
+        type: string
+      - name: description
+        label: Description
+        type: text
+      - name: link
+        label: Event link
+        type: string
