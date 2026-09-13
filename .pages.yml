@@ -1,6 +1,16 @@
 media:
-  input: cms-test-media
-  output: /cms-test-media
+  - name: site-images
+    label: Site images
+    input: .
+    output: /
+    categories: [image]
+    rename: false
+  - name: cms-test-images
+    label: CMS Test uploads
+    input: cms-test-media
+    output: /cms-test-media
+    categories: [image]
+    rename: safe
 
 content:
   - name: cms-test
@@ -33,6 +43,16 @@ content:
         label: Event title
         type: string
         required: true
+        description: Internal event title used in the CMS and filename.
+      - name: poster
+        label: Poster
+        type: image
+        required: true
+        options:
+          media: site-images
+          extensions: [jpg, jpeg, png, webp]
+          categories: [image]
+          rename: false
       - name: date
         label: Date
         type: date
@@ -40,11 +60,34 @@ content:
         options:
           format: yyyy-MM-dd
       - name: venue
-        label: Venue
+        label: Venue / Address
         type: string
+        required: true
       - name: description
         label: Description
-        type: text
-      - name: link
-        label: Event link
+        type: rich-text
+        options:
+          format: html
+          media: false
+      - name: special_guests
+        label: Special Guests
+        type: string
+      - name: doors
+        label: Doors
+        type: string
+        description: "Example: 20:00"
+      - name: presale_price
+        label: Presale price (€)
+        type: number
+      - name: door_price
+        label: Door price (€)
+        type: number
+      - name: ticket_url
+        label: Tickets link
+        type: string
+      - name: official_event_url
+        label: Official Event link
+        type: string
+      - name: setlist_url
+        label: Setlist.fm link
         type: string
