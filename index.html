@@ -1575,13 +1575,28 @@
     }
   });
 
-  // Try to play the intro as soon as the page opens.
-  // If the browser blocks audible autoplay, the Intro button remains available.
-  audio.currentTime = 0;
-  const autoplayAttempt = audio.play();
+  // Autoplay only on the first site entry in this tab/session,
+  // and again on an explicit browser refresh. Internal navigation does not replay it.
+  const introSessionKey = 'prisonersIntroAutoplayPlayed';
+  const navigationEntry = performance.getEntriesByType('navigation')[0];
+  const isReload = navigationEntry && navigationEntry.type === 'reload';
 
-  if (autoplayAttempt && typeof autoplayAttempt.catch === 'function'){
-    autoplayAttempt.catch(() => setPlayingState(false));
+  let introAlreadyPlayed = false;
+  try{
+    introAlreadyPlayed = sessionStorage.getItem(introSessionKey) === '1';
+  }catch(e){}
+
+  if (isReload || !introAlreadyPlayed){
+    try{
+      sessionStorage.setItem(introSessionKey, '1');
+    }catch(e){}
+
+    audio.currentTime = 0;
+    const autoplayAttempt = audio.play();
+
+    if (autoplayAttempt && typeof autoplayAttempt.catch === 'function'){
+      autoplayAttempt.catch(() => setPlayingState(false));
+    }
   }
 })();
 </script>
