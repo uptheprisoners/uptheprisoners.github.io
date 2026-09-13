@@ -1,0 +1,16 @@
+media:
+  input: cms-test-media
+  output: /cms-test-media
+
+content:
+  - name: cms-test
+    label: CMS Test
+    type: file
+    path: cms-test/content.json
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: message
+        label: Message
+        type: text
