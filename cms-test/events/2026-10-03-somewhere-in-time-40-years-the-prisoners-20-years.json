@@ -1,7 +1,14 @@
 {
-  "title": "Somewhere in Time - 40 Years / The Prisoners - 20 Years",
+  "title": "The Prisoners — 20 Years Anniversary / 40 Years Somewhere in Time",
+  "poster": "/event-poster.webp",
   "date": "2026-10-03",
-  "venue": "Eightball Club, Thessaloniki",
-  "description": "Test event entry for the Pages CMS setup.",
-  "link": ""
+  "venue": "Eightball Live Stage, Πίνδου 1, Λαδάδικα, Θεσσαλονίκη",
+  "description": "Επετειακό live για τα <strong>20 χρόνια των The Prisoners (2006–2026)</strong> και τα <strong>40 χρόνια του «Somewhere in Time»</strong>.",
+  "special_guests": "Obscurus Rex",
+  "doors": "20:00",
+  "presale_price": 10,
+  "door_price": 12,
+  "ticket_url": "https://cometogether.live/el/event/6170/the-prisoners-somewhere-in-time-40-years-anniversary-20-years-the-prisoners-2006-2026",
+  "official_event_url": "https://eightballclub.gr/event/the-prisoners-somewhere-in-time-40-years-anniversary-20-years-the-prisoners-2006-2026/",
+  "setlist_url": "https://www.setlist.fm/setlists/the-prisoners-3852d6f.html"
 }
