@@ -1490,6 +1490,15 @@
       result.catch(() => setPlayingState(false));
     }
   });
+
+  // Try to play the intro as soon as the page opens.
+  // If the browser blocks audible autoplay, the Intro button remains available.
+  audio.currentTime = 0;
+  const autoplayAttempt = audio.play();
+
+  if (autoplayAttempt && typeof autoplayAttempt.catch === 'function'){
+    autoplayAttempt.catch(() => setPlayingState(false));
+  }
 })();
 </script>
 
