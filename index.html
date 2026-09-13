@@ -416,6 +416,10 @@
     .event-poster{max-width:520px;margin:0 auto;}
   }
 
+  /* CMS TEST ONLY: optional event fields must not leave empty gaps */
+  #live [hidden]{display:none !important;}
+  .live-layout.cms-no-poster{grid-template-columns:1fr;}
+
 
 
   /* collapsible intermediate history */
@@ -1564,37 +1568,175 @@
 <section id="live">
   <div class="wrap">
     <h2>Επόμενη Εμφάνιση</h2>
-    <div class="live-layout">
-      <div>
-        <img class="event-poster" src="event-poster.webp" width="1200" height="1480" loading="lazy" decoding="async" alt="The Prisoners — 20 Years Anniversary / 40 Years Somewhere in Time — 3 Οκτωβρίου 2026, Eightball Live Stage, Θεσσαλονίκη">
+    <div class="live-layout" id="cms-live-layout">
+      <div id="cms-event-poster-wrap">
+        <img id="cms-event-poster" class="event-poster" src="event-poster.webp" width="1200" height="1480" loading="lazy" decoding="async" alt="The Prisoners — 20 Years Anniversary / 40 Years Somewhere in Time — 3 Οκτωβρίου 2026, Eightball Live Stage, Θεσσαλονίκη">
       </div>
 
       <div class="show-card">
-        <div class="date">Σάββατο 3 Οκτωβρίου 2026</div>
-        <div class="venue">Eightball Live Stage, Πίνδου 1, Λαδάδικα, Θεσσαλονίκη</div>
+        <div class="date" id="cms-event-date">Σάββατο 3 Οκτωβρίου 2026</div>
+        <div class="venue" id="cms-event-venue">Eightball Live Stage, Πίνδου 1, Λαδάδικα, Θεσσαλονίκη</div>
 
-        <p class="event-note">
+        <p class="event-note" id="cms-event-description">
           Επετειακό live για τα <strong>20 χρόνια των The Prisoners (2006–2026)</strong>
           και τα <strong>40 χρόνια του «Somewhere in Time»</strong>.
         </p>
 
-        <div class="meta">
-          <span>Special Guests: Obscurus Rex</span>
-          <span>Πόρτες: 20:00</span>
+        <div class="meta" id="cms-event-meta">
+          <span id="cms-event-guests">Special Guests: Obscurus Rex</span>
+          <span id="cms-event-doors">Πόρτες: 20:00</span>
         </div>
 
-        <div class="ticketline">Προπώληση 10€ · Ταμείο 12€</div>
+        <div class="ticketline" id="cms-event-prices">Προπώληση 10€ · Ταμείο 12€</div>
 
-        <div class="btnrow">
-          <a class="btn ticket" href="https://cometogether.live/el/event/6170/the-prisoners-somewhere-in-time-40-years-anniversary-20-years-the-prisoners-2006-2026" target="_blank" rel="noopener">Εισιτήρια</a>
-          <a class="btn official" href="https://eightballclub.gr/event/the-prisoners-somewhere-in-time-40-years-anniversary-20-years-the-prisoners-2006-2026/" target="_blank" rel="noopener">Επίσημο Event</a>
-          <a class="btn ghost" href="https://www.setlist.fm/setlists/the-prisoners-3852d6f.html" target="_blank" rel="noopener">Setlist.fm</a>
+        <div class="btnrow" id="cms-event-buttons">
+          <a id="cms-event-ticket" class="btn ticket" href="https://cometogether.live/el/event/6170/the-prisoners-somewhere-in-time-40-years-anniversary-20-years-the-prisoners-2006-2026" target="_blank" rel="noopener">Εισιτήρια</a>
+          <a id="cms-event-official" class="btn official" href="https://eightballclub.gr/event/the-prisoners-somewhere-in-time-40-years-anniversary-20-years-the-prisoners-2006-2026/" target="_blank" rel="noopener">Επίσημο Event</a>
+          <a id="cms-event-setlist" class="btn ghost" href="https://www.setlist.fm/setlists/the-prisoners-3852d6f.html" target="_blank" rel="noopener">Setlist.fm</a>
         </div>
       </div>
       </div>
     </div>
   </div>
 </section>
+
+
+<script>
+/* CMS TEST ONLY — reads the Events Test collection from the cms-test branch.
+   The existing live-section markup/design remains the fallback if loading fails. */
+(async function loadCmsTestNextEvent(){
+  const apiUrl = 'https://api.github.com/repos/uptheprisoners/uptheprisoners.github.io/contents/cms-test/events?ref=cms-test';
+
+  const $ = (id) => document.getElementById(id);
+  const liveSection = $('live');
+  const layout = $('cms-live-layout');
+  const posterWrap = $('cms-event-poster-wrap');
+  const poster = $('cms-event-poster');
+  const dateEl = $('cms-event-date');
+  const venueEl = $('cms-event-venue');
+  const descriptionEl = $('cms-event-description');
+  const metaEl = $('cms-event-meta');
+  const guestsEl = $('cms-event-guests');
+  const doorsEl = $('cms-event-doors');
+  const pricesEl = $('cms-event-prices');
+  const buttonsEl = $('cms-event-buttons');
+  const ticketEl = $('cms-event-ticket');
+  const officialEl = $('cms-event-official');
+  const setlistEl = $('cms-event-setlist');
+
+  function hasValue(value){
+    return value !== null && value !== undefined && String(value).trim() !== '';
+  }
+
+  function setOptionalText(el, value, prefix){
+    if (!el) return false;
+    const present = hasValue(value);
+    el.hidden = !present;
+    if (present) el.textContent = (prefix || '') + value;
+    return present;
+  }
+
+  function setOptionalLink(el, url){
+    if (!el) return false;
+    const present = hasValue(url);
+    el.hidden = !present;
+    if (present) el.href = url;
+    return present;
+  }
+
+  function parseLocalDate(value){
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return null;
+    const [year, month, day] = value.split('-').map(Number);
+    return new Date(year, month - 1, day);
+  }
+
+  function formatGreekDate(date){
+    let text = date.toLocaleDateString('el-GR', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  }
+
+  try {
+    const listResponse = await fetch(apiUrl);
+    if (!listResponse.ok) throw new Error('GitHub list request failed: ' + listResponse.status);
+    const files = await listResponse.json();
+
+    const jsonFiles = files.filter((item) =>
+      item.type === 'file' &&
+      item.name.toLowerCase().endsWith('.json') &&
+      item.download_url
+    );
+
+    const events = (await Promise.all(jsonFiles.map(async (item) => {
+      const response = await fetch(item.download_url);
+      if (!response.ok) return null;
+      const data = await response.json();
+      const parsedDate = parseLocalDate(data.date);
+      return parsedDate ? { ...data, _parsedDate: parsedDate } : null;
+    }))).filter(Boolean);
+
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    const upcoming = events
+      .filter((event) => event._parsedDate >= today)
+      .sort((a,b) => a._parsedDate - b._parsedDate);
+
+    if (!upcoming.length) {
+      if (liveSection) liveSection.hidden = true;
+      return;
+    }
+
+    const event = upcoming[0];
+
+    if (dateEl) dateEl.textContent = formatGreekDate(event._parsedDate);
+
+    const hasPoster = hasValue(event.poster);
+    if (posterWrap) posterWrap.hidden = !hasPoster;
+    if (layout) layout.classList.toggle('cms-no-poster', !hasPoster);
+    if (poster && hasPoster) {
+      poster.src = String(event.poster).replace(/^\/+/, '');
+      poster.alt = [
+        event.title || 'The Prisoners live',
+        event.date || '',
+        event.venue || ''
+      ].filter(Boolean).join(' — ');
+    }
+
+    setOptionalText(venueEl, event.venue);
+
+    if (descriptionEl) {
+      const hasDescription = hasValue(event.description);
+      descriptionEl.hidden = !hasDescription;
+      if (hasDescription) descriptionEl.innerHTML = event.description;
+    }
+
+    const hasGuests = setOptionalText(guestsEl, event.special_guests, 'Special Guests: ');
+    const hasDoors = setOptionalText(doorsEl, event.doors, 'Πόρτες: ');
+    if (metaEl) metaEl.hidden = !(hasGuests || hasDoors);
+
+    const prices = [];
+    if (hasValue(event.presale_price)) prices.push('Προπώληση ' + event.presale_price + '€');
+    if (hasValue(event.door_price)) prices.push('Ταμείο ' + event.door_price + '€');
+    if (pricesEl) {
+      pricesEl.hidden = prices.length === 0;
+      if (prices.length) pricesEl.textContent = prices.join(' · ');
+    }
+
+    const hasTicket = setOptionalLink(ticketEl, event.ticket_url);
+    const hasOfficial = setOptionalLink(officialEl, event.official_event_url);
+    const hasSetlist = setOptionalLink(setlistEl, event.setlist_url);
+    if (buttonsEl) buttonsEl.hidden = !(hasTicket || hasOfficial || hasSetlist);
+
+  } catch (error) {
+    console.warn('CMS test event loading failed; keeping static fallback.', error);
+  }
+})();
+</script>
 
 <section id="about" class="about">
   <div class="wrap">
