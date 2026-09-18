@@ -27,23 +27,16 @@ content:
 
   - name: events-test
     label: Events Test
-    type: collection
-    path: cms-test/events
+    type: file
+    path: cms-test/events.json
     format: json
-    filename: "{date}-{title}.json"
-    view:
-      fields: [title, date, venue]
-      primary: title
-      sort: [date, title]
-      default:
-        sort: date
-        order: desc
+    list: true
     fields:
       - name: title
         label: Event title
         type: string
         required: true
-        description: Internal event title used in the CMS and filename.
+        description: Internal event title used only in the CMS.
       - name: poster
         label: Poster
         type: image
