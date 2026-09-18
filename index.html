@@ -1602,10 +1602,10 @@
 
 
 <script>
-/* CMS TEST ONLY — reads the Events Test collection from the cms-test branch.
+/* CMS TEST ONLY — reads the local Events Test JSON file.
    The existing live-section markup/design remains the fallback if loading fails. */
 (async function loadCmsTestNextEvent(){
-  const apiUrl = 'https://api.github.com/repos/uptheprisoners/uptheprisoners.github.io/contents/cms-test/events?ref=cms-test';
+  const eventsUrl = 'cms-test/events.json';
 
   const $ = (id) => document.getElementById(id);
   const liveSection = $('live');
@@ -1661,23 +1661,16 @@
   }
 
   try {
-    const listResponse = await fetch(apiUrl);
-    if (!listResponse.ok) throw new Error('GitHub list request failed: ' + listResponse.status);
-    const files = await listResponse.json();
+    const response = await fetch(eventsUrl, { cache: 'no-store' });
+    if (!response.ok) throw new Error('Events file request failed: ' + response.status);
+    const sourceEvents = await response.json();
 
-    const jsonFiles = files.filter((item) =>
-      item.type === 'file' &&
-      item.name.toLowerCase().endsWith('.json') &&
-      item.download_url
-    );
-
-    const events = (await Promise.all(jsonFiles.map(async (item) => {
-      const response = await fetch(item.download_url);
-      if (!response.ok) return null;
-      const data = await response.json();
-      const parsedDate = parseLocalDate(data.date);
-      return parsedDate ? { ...data, _parsedDate: parsedDate } : null;
-    }))).filter(Boolean);
+    const events = (Array.isArray(sourceEvents) ? sourceEvents : [])
+      .map((data) => {
+        const parsedDate = parseLocalDate(data.date);
+        return parsedDate ? { ...data, _parsedDate: parsedDate } : null;
+      })
+      .filter(Boolean);
 
     const today = new Date();
     today.setHours(0,0,0,0);
