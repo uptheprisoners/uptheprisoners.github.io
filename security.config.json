@@ -1,0 +1,13 @@
+{
+  "name": "The Prisoners",
+  "hosts": [
+    "uptheprisoners.gr",
+    "www.uptheprisoners.gr"
+  ],
+  "token": "ccc78731c4ad4bd48b0e7e1b17bc64fd",
+  "formEndpoint": "https://formspree.io/f/myeyqeld",
+  "frameOrigins": [
+    "https://www.youtube-nocookie.com"
+  ],
+  "clickToLoad": false
+}

@@ -2,6 +2,8 @@
 <html lang="el">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com/beacon.min.js 'sha256-JsgKSbQServu4O/Q9N6YDKNYDcqrh8aRR1URV+7ALjc=' 'sha256-K13+xRzzAbiNLK73woKseSgL5A4U+CvaycCNAX83eH8=' 'sha256-Rbk/C+neLEvUy+fyhgQFRaaRj7uoNETa0FQrCPkqK8A=' 'sha256-kIzw30Gb+nl+bNBqgNqhdSP0cmVkaIEo2c7GWfmt/cQ=' 'sha256-mmlIbAue/fVQXchmNDJXHFx7K29qKCQ8SX60WduscN0='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src 'none'; connect-src 'self' https://cloudflareinsights.com/cdn-cgi/rum https://formspree.io/f/myeyqeld; form-action https://formspree.io/f/myeyqeld; object-src 'none'; base-uri 'none'; worker-src 'none'; manifest-src 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Prisoners — Iron Maiden Tribute Band, Θεσσαλονίκη</title>
 <meta name="description" content="The Prisoners: Iron Maiden Tribute Band από τη Θεσσαλονίκη, ενεργοί από το 2006. 20 χρόνια live παρουσίας. Sold-out anniversary show at Eightball Live Stage on 3 October 2026.">
@@ -2087,20 +2089,20 @@
     <form id="contactMessageForm" action="https://formspree.io/f/myeyqeld" method="POST">
       <div class="contact-form-field">
         <label for="contactName">Όνομα</label>
-        <input id="contactName" name="name" type="text" autocomplete="name" required>
+        <input id="contactName" name="name" type="text" autocomplete="name" required maxlength="120">
       </div>
       <div class="contact-form-field">
         <label for="contactEmail">Email</label>
-        <input id="contactEmail" name="email" type="email" autocomplete="email" required>
+        <input id="contactEmail" name="email" type="email" autocomplete="email" required maxlength="254">
       </div>
       <div class="contact-form-field">
         <label for="contactMessage">Μήνυμα</label>
-        <textarea id="contactMessage" name="message" required></textarea>
+        <textarea id="contactMessage" name="message" required maxlength="5000"></textarea>
       </div>
       <input type="hidden" name="_subject" value="The Prisoners — Website contact">
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
       <button class="contact-form-submit" type="submit">Αποστολή</button>
-      <div class="contact-form-status" id="contactFormStatus" role="status" aria-live="polite"></div>
+      <div class="contact-form-status" id="contactFormStatus" role="status" aria-live="polite" aria-atomic="true"></div>
     </form>
   </div>
 </div>
@@ -2124,6 +2126,7 @@
     </div>
     <div class="site-credit">Website design &amp; development by <a href="https://www.linkedin.com/in/debbiemoraiti/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:inherit;">Debbie Moraiti</a></div>
   </div>
+<p style="text-align:center;margin:14px 16px 0;font-size:12px"><a href="privacy.html">Ιδιωτικότητα &amp; cookies</a></p>
 </footer>
 
 
@@ -2236,6 +2239,7 @@
 
 
 
+<script src="/assets/js/contact-request.js"></script>
 <script>
 (function(){
   const modal = document.getElementById('contactMessageModal');
@@ -2275,29 +2279,33 @@
     if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
   });
 
+  let submitting = false;
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    submitBtn.disabled = true;
+    if (submitting || !form.reportValidity()) return;
+    const data = new FormData(form);
+    if (data.get('_gotcha')) return;
+    const controls = [...form.elements].map(control => ({ control, disabled: control.disabled }));
+    const original = submitBtn.textContent;
+    submitting = true;
+    form.setAttribute('aria-busy', 'true');
+    controls.forEach(({control}) => { control.disabled = true; });
     status.className = 'contact-form-status';
-    status.textContent = 'Αποστολή…';
-
-    try{
-      const response = await fetch(form.action, {
-        method:'POST',
-        body:new FormData(form),
-        headers:{'Accept':'application/json'}
-      });
-
-      if (!response.ok) throw new Error('send failed');
-
+    status.textContent = "Αποστολή…";
+    submitBtn.textContent = "Αποστολή…";
+    try {
+      await window.siteContact.submit(form.action, data);
       form.reset();
       status.className = 'contact-form-status is-success';
-      status.textContent = 'Το μήνυμα στάλθηκε. Ευχαριστούμε!';
-    }catch(err){
+      status.textContent = "Το μήνυμα στάλθηκε. Ευχαριστούμε!";
+    } catch {
       status.className = 'contact-form-status is-error';
-      status.textContent = 'Δεν ήταν δυνατή η αποστολή. Δοκιμάστε ξανά σε λίγο.';
-    }finally{
-      submitBtn.disabled = false;
+      status.textContent = "Δεν μπορέσαμε να επιβεβαιώσουμε την αποστολή. Το κείμενό σας διατηρήθηκε. Δοκιμάστε ξανά σε λίγο.";
+    } finally {
+      submitting = false;
+      form.removeAttribute('aria-busy');
+      controls.forEach(({control, disabled}) => { control.disabled = disabled; });
+      submitBtn.textContent = original;
     }
   });
 })();
@@ -2339,5 +2347,6 @@
 })();
 </script>
 
+<script defer src="/assets/js/web-analytics.js"></script>
 </body>
 </html>
